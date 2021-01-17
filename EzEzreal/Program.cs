@@ -11,7 +11,6 @@ namespace EzEzreal{
     internal class Program{
         private static Spell Q,W,E,R;
         private static Menu mainMenu;
-        private const int ancho = 100, altura = 10,XOffset=-45,YOffset =-24;
         public static void Main(string[] args){
             GameEvent.OnGameLoad += OnGameLoad;
         }
@@ -132,6 +131,9 @@ namespace EzEzreal{
             if(mainMenu["KS"].GetValue<MenuBool>("Qks").Enabled){
                 var target = TargetSelector.GetTarget(Q.Range);
                 var input = Q.GetPrediction(target);
+                if(target == null){
+                    return;
+                }
                 if(Q.IsReady() && target.IsValidTarget() && input.Hitchance >= HitChance.High && Q.GetDamage(target) >= target.Health-ObjectManager.Player.CalculateDamage(target,DamageType.Physical,1)){
                     Q.Cast(input.UnitPosition);
                 }
@@ -140,6 +142,9 @@ namespace EzEzreal{
                 var target = TargetSelector.GetTarget(R.Range);
                 var input = R.GetPrediction(target);
                 var savePos = 1300f;
+                if(target == null){
+                    return;
+                }
                 if(R.IsReady() && target.IsValidTarget() && !target.InRange(savePos) && input.Hitchance >= HitChance.High && R.GetDamage(target) >= target.Health-ObjectManager.Player.CalculateDamage(target,DamageType.Magical,1)){
                     R.Cast(input.UnitPosition);
                 }
