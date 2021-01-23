@@ -6,6 +6,7 @@ Este es mi repositorio para subir los scripts en los que he estado trabajando, s
 Espero ir mejorando con el tiempo y poder brindarles scripts de mejor calidad. Decidí agregar esta parte en español porque sé lo complicado que puede llegar a ser entender algo que no está en tu idioma. Aquí está mi aporte Hispano <3. En el caso de tener alguna duda pueden hablarme a mi discord EweEwe#6326 o mencionándome en el grupo de Discord que tiene Ensoul.
 
 Before describing what the script contains, I would like to thank babazhou and Lyrdum for helping me with aspects of the code.
+Antes de mencionar lo que tiene mi script, me gustaría agradecer a babazhou y a Lyrdum por ayudarme con aspectos del código
 
 
 ## EzEzreal
