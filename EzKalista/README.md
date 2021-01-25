@@ -28,7 +28,8 @@ Antes de mencionar lo que tiene mi script, me gustaría agradecer a babazhou y a
   - Shows the percentage of damage over the mob's health (Dragon, Baron and Rift Herald only).
 
 **ChangeLog**
-- E will now automatically cast when chasing an enemy.
-- Auto W to Drake and Baron (need improved).
+- ***V1.0.1.0***
+  - E will now automatically cast when chasing an enemy.
+  - Auto W to Drake and Baron (need improved).
 **To do**
 - As I mentioned before, we must improve the casting of the R to save our Ally. I would also like to improve the calculation of the damage of the E.
