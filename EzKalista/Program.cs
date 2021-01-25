@@ -13,7 +13,7 @@ namespace EzKalista{
     internal class Program{
         public static Font TextBold;
         
-        private static Spell Q,E,R;
+        private static Spell Q,W,E,R;
         private static Menu mainMenu;
         public static void Main(string[] args){
             GameEvent.OnGameLoad += OnGameLoad;
@@ -28,6 +28,7 @@ namespace EzKalista{
             if(GameObjects.Player.CharacterName != "Kalista") return;
             Q = new Spell(SpellSlot.Q,1150f);
             Q.SetSkillshot(.25f,80f,2100f,true,SpellType.Line);
+            W = new Spell(SpellSlot.W,5000f);
             E = new Spell(SpellSlot.E,1000f);
             R = new Spell(SpellSlot.R,1200f);
 
@@ -62,6 +63,8 @@ namespace EzKalista{
             var Misc = new Menu("Misc","Miscellaneous Settings");
             Misc.Add(new MenuBool("Rally","Save Ally whit R",true));
             Misc.Add(new MenuSlider("health%","^ Health percentage",10,0,100));
+            Misc.Add(new MenuBool("wDrake","Automatic W to Drake",true));
+            Misc.Add(new MenuBool("wBaron","Automatic W to Baron",true));
             mainMenu.Add(Misc);
 
             var Draw = new Menu("Draw","Draw Settings");
@@ -100,10 +103,13 @@ namespace EzKalista{
                     }
                 }
             }
+        }
+        private static void AutoEChase(){
             foreach(var enemy in GameObjects.EnemyHeroes.Where(x => x.IsValidTarget(E.Range) && x.HasBuff("kalistaexpungemarker"))){
+                if(enemy == null) return;
                 foreach(var minion in GameObjects.EnemyMinions.Where(z => z.IsValidTarget(E.Range) && z.HasBuff("kalistaexpungemarker"))){
+                    if(minion == null) return;
                     var Edmg = E.GetDamage(minion);
-                    
                     if(mainMenu["Harass"].GetValue<MenuBool>("Eharassmin").Enabled){
                         if(E.IsReady() && !GameObjects.Player.InAutoAttackRange(enemy) && Edmg>minion.Health-ObjectManager.Player.CalculateDamage(minion, DamageType.Physical,1)){
                             E.Cast();
@@ -178,9 +184,25 @@ namespace EzKalista{
                 }
             }
         }
+        private static void WLogic(){
+            var Drakepos = new Vector3(9866f, 4414f, -71f);
+            var Baronpos = new Vector3(5007f,10471f,-71f);
+            if(mainMenu["Misc"].GetValue<MenuBool>("wDrake").Enabled){
+                if(GameObjects.Player.Distance(Drakepos)<= W.Range){
+                    W.Cast(Drakepos);
+                }
+            }
+            if(mainMenu["Misc"].GetValue<MenuBool>("wBaron").Enabled){
+                if(GameObjects.Player.Distance(Baronpos)<= W.Range){
+                    W.Cast(Baronpos);
+                }
+            }
+        }
                        
         private static void OnGameUpdate(EventArgs args){
             if(GameObjects.Player.IsDead) return;
+            WLogic();
+            AutoEChase();
             KSLogic();
             SaveAlly();
             switch (Orbwalker.ActiveMode){
@@ -234,6 +256,7 @@ namespace EzKalista{
                 foreach(var mobs in GameObjects.Jungle.Where(x => x.IsValidTarget(E.Range))){
                     if(mobs == null ) return;
                     if(mobs.Name.Contains("Dragon") || mobs.Name.Contains("Baron") || mobs.Name.Contains("Herald")){
+                        var mobs2 = mobs.Position;
                         var mobpos = mobs.HPBarPosition;
                         var Edmg = E.GetDamage(mobs)/2;
                         var DamagePorcnt = (Edmg/mobs.Health+mobs.PhysicalShield)*100;
