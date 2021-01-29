@@ -22,14 +22,20 @@ Antes de mencionar lo que tiene mi script, me gustaría agradecer a babazhou y a
 - Miscellaneous:
   - Use R to save ally.
   - You can choose the % health of your ally to cast R (Needs improvement, as it will always cast R when the ally has% health      selected).
+  - Auto W to Drake and Baron.
+  - Use minions to chase enemies.
 - Draw:
   - Q, E range.
   - Shows the percentage of damage over the enemy's health.
   - Shows the percentage of damage over the mob's health (Dragon, Baron and Rift Herald only).
 
 **ChangeLog**
+- ***V1.0.2.0***
+  - Improved W logic.
+  - Use minions to chases enemies.
 - ***V1.0.1.0***
   - E will now automatically cast when chasing an enemy.
   - Auto W to Drake and Baron (need improved).
 **To do**
-- As I mentioned before, we must improve the casting of the R to save our Ally. I would also like to improve the calculation of the damage of the E.
+- Improve R logic.
+- Skin changer.
