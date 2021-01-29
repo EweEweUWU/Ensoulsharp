@@ -31,6 +31,7 @@ namespace EzKalista{
             W = new Spell(SpellSlot.W,5000f);
             E = new Spell(SpellSlot.E,1000f);
             R = new Spell(SpellSlot.R,1200f);
+            
 
             mainMenu = new Menu("Kalista","EzKalista",true);
             
@@ -65,6 +66,7 @@ namespace EzKalista{
             Misc.Add(new MenuSlider("health%","^ Health percentage",10,0,100));
             Misc.Add(new MenuBool("wDrake","Automatic W to Drake",true));
             Misc.Add(new MenuBool("wBaron","Automatic W to Baron",true));
+            Misc.Add(new MenuBool("useminions","Use minions to chase",true));
             mainMenu.Add(Misc);
 
             var Draw = new Menu("Draw","Draw Settings");
@@ -78,8 +80,9 @@ namespace EzKalista{
             mainMenu.Attach();
             GameEvent.OnGameTick += OnGameUpdate;
             Drawing.OnDraw += OnDraw;
-            Console.Write("EzKalista loaded");
-            Game.Print("Hi Buddy, enjoy whit EzKalista.\nMaded by EweEwe");
+            Console.Write("EzKalista Loaded. Maded by EweEwe");
+            Game.Print("<font color = '#FFFF00'>Hi "+GameObjects.Player.Name+" <font color = '#00a6d6'>EzKalista <font color = '#FFFF00'>has been loaded! Enjoy.\nIf you have problems talk to me at discord: <font color = '#00a6d6'>EweEwe#6326");
+            
         }
         private static void ComboLogic(){
             var target = TargetSelector.GetTarget(Q.Range);
@@ -118,6 +121,7 @@ namespace EzKalista{
                 }
             }
         }
+
         private static void SaveAlly(){
             var allyR = GameObjects.AllyHeroes.FirstOrDefault(x=> x.HasBuff("kalistacoopstrikeally"));
             if(allyR == null){
@@ -164,6 +168,7 @@ namespace EzKalista{
                     }
                 }
             }
+
         }
         private static void JungleLogic(){
             var mobs = GameObjects.Jungle.FirstOrDefault(x => x.IsValidTarget(E.Range));
@@ -185,18 +190,23 @@ namespace EzKalista{
             }
         }
         private static void WLogic(){
+            if(!W.IsReady()) return;
             var Drakepos = new Vector3(9866f, 4414f, -71f);
             var Baronpos = new Vector3(5007f,10471f,-71f);
-            if(mainMenu["Misc"].GetValue<MenuBool>("wDrake").Enabled){
-                if(GameObjects.Player.Distance(Drakepos)<= W.Range){
-                    W.Cast(Drakepos);
+            if(!GameObjects.Player.IsRecalling())
+            if(GameObjects.Player.Position.CountEnemyHeroesInRange(2000f)<= 0){
+                if(mainMenu["Misc"].GetValue<MenuBool>("wDrake").Enabled){
+                    if(GameObjects.Player.Distance(Drakepos)<= W.Range){
+                        W.Cast(Drakepos);
+                    }
+                }
+                if(mainMenu["Misc"].GetValue<MenuBool>("wBaron").Enabled){
+                    if(GameObjects.Player.Distance(Baronpos)<= W.Range){
+                        W.Cast(Baronpos);
+                    }
                 }
             }
-            if(mainMenu["Misc"].GetValue<MenuBool>("wBaron").Enabled){
-                if(GameObjects.Player.Distance(Baronpos)<= W.Range){
-                    W.Cast(Baronpos);
-                }
-            }
+            
         }
                        
         private static void OnGameUpdate(EventArgs args){
@@ -208,6 +218,14 @@ namespace EzKalista{
             switch (Orbwalker.ActiveMode){
                 case OrbwalkerMode.Combo:
                     ComboLogic();
+                    if(mainMenu["Misc"].GetValue<MenuBool>("useminions").Enabled){
+                        if(Orbwalker.GetTarget() == null){
+                            if(GameObjects.EnemyHeroes.Any(x => x.IsValidTarget(1300f) && GameObjects.Player.Distance(x) > GameObjects.Player.AttackRange)){
+                                var minion = GameObjects.EnemyMinions.OrderBy(x => x.Distance(GameObjects.Player)).FirstOrDefault();
+                                if(minion != null) Orbwalker.Orbwalk(minion,Game.CursorPos);
+                            }
+                        }
+                    }
                     break;
                 case OrbwalkerMode.Harass:
                     HarassLogic();
