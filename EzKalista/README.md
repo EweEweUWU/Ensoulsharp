@@ -16,6 +16,9 @@ Antes de mencionar lo que tiene mi script, me gustaría agradecer a babazhou y a
   - Use E on minions.
   - Choose the number of minions to cast E (between 1 and 5).
   - Mana Manager.
+- Lasthit:
+  - Use E on Lasthit.
+  - Mana Manager.
 - Jungle Clear:
   - Q Jungle clear.
   - E to kill mobs.
@@ -24,12 +27,18 @@ Antes de mencionar lo que tiene mi script, me gustaría agradecer a babazhou y a
   - You can choose the % health of your ally to cast R (Needs improvement, as it will always cast R when the ally has% health      selected).
   - Auto W to Drake and Baron.
   - Use minions to chase enemies.
+  - Skin changer.
 - Draw:
   - Q, E range.
   - Shows the percentage of damage over the enemy's health.
   - Shows the percentage of damage over the mob's health (Dragon, Baron and Rift Herald only).
+  - Draw a circle under E killable minions.
 
 **ChangeLog**
+- ***V1.0.3.0***
+  - Skin changer added.
+  - Q prediction improved.
+  - Lasthit whit E + Drawing.
 - ***V1.0.2.0***
   - Improved W logic.
   - Use minions to chases enemies.
@@ -38,4 +47,4 @@ Antes de mencionar lo que tiene mi script, me gustaría agradecer a babazhou y a
   - Auto W to Drake and Baron (need improved).
 **To do**
 - Improve R logic.
-- Skin changer.
+- Use E on non killable minions.
