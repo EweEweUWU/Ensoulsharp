@@ -7,6 +7,7 @@ using EnsoulSharp.SDK.Utility;
 using EnsoulSharp.SDK.MenuUI;
 using SharpDX;
 using SharpDX.Direct3D9;
+using Color = System.Drawing.Color;
 using Font = SharpDX.Direct3D9.Font;
 
 namespace EzKalista{
@@ -56,6 +57,11 @@ namespace EzKalista{
             Farm.Add(new MenuSlider("mana%","Mana percentage",50,0,100));
             mainMenu.Add(Farm);
 
+            var Lasthit = new Menu("Lasthit", "LastHit Settings");
+            Lasthit.Add(new MenuBool("Euse", "Use E", true));
+            Lasthit.Add(new MenuSlider("mana%", "Mana percentage", 50, 0, 100));
+            mainMenu.Add(Lasthit);
+
             var Jungle = new Menu("Jungle","Jungle Settings");
             Jungle.Add(new MenuBool("Quse","Use Q",true));
             Jungle.Add(new MenuBool("Euse","Use E",true));
@@ -67,14 +73,18 @@ namespace EzKalista{
             Misc.Add(new MenuBool("wDrake","Automatic W to Drake",true));
             Misc.Add(new MenuBool("wBaron","Automatic W to Baron",true));
             Misc.Add(new MenuBool("useminions","Use minions to chase",true));
+            Misc.Add(new MenuSlider("skins","Set skin",3,0,13));
+            Misc.Add(new MenuKeyBind("setskin", "^ Press to set skin", Keys.U, KeyBindType.Press));
             mainMenu.Add(Misc);
 
             var Draw = new Menu("Draw","Draw Settings");
             Draw.Add(new MenuBool("qRange","Draw Q range",true));
             Draw.Add(new MenuBool("eRange","Draw E Eange",true));
+            Draw.Add(new MenuBool("lista","Draw range only if spell is ready"));
             Draw.Add(new MenuBool("eDamageChamps","Draw E Damage on champions",true));
             Draw.Add(new MenuBool("eDamageJG","Draw E damage on Dragon and Baron",true));
-            Draw.Add(new MenuBool("lista","Draw range only if spell is ready"));
+            Draw.Add(new MenuBool("ecircle", "Draw circle under killable minion", true));
+            
             mainMenu.Add(Draw);
 
             mainMenu.Attach();
@@ -84,12 +94,31 @@ namespace EzKalista{
             Game.Print("<font color = '#FFFF00'>Hi "+GameObjects.Player.Name+" <font color = '#00a6d6'>EzKalista <font color = '#FFFF00'>has been loaded! Enjoy.\nIf you have problems talk to me at discord: <font color = '#00a6d6'>EweEwe#6326");
             
         }
+
+        public static void SetSkin(){
+            if (mainMenu["Misc"].GetValue<MenuKeyBind>("setskin").Active){
+                GameObjects.Player.SetSkin(mainMenu["Misc"].GetValue<MenuSlider>("skins").Value);
+            }
+        }
         private static void ComboLogic(){
             var target = TargetSelector.GetTarget(Q.Range);
             var input = Q.GetPrediction(target);
             if(mainMenu["Combo"].GetValue<MenuBool>("Quse").Enabled){
-                if(Q.IsReady() && target.IsValidTarget() && input.Hitchance >= HitChance.High){
+                if(Q.IsReady() && target.IsValidTarget() && input.Hitchance >= HitChance.High && !GameObjects.Player.IsDashing()){
                     Q.Cast(input.UnitPosition);
+                }
+            }
+        }
+
+        private static void LastHitLogic(){
+            foreach (var minion in GameObjects.EnemyMinions.Where(x=> x.IsValidTarget(E.Range) && x.HasBuff("kalistaexpungemarker")))
+            {
+                if (minion == null) return;
+                if (mainMenu["Lasthit"].GetValue<MenuBool>("Euse").Enabled){
+                    if (mainMenu["Lasthit"].GetValue<MenuSlider>("mana%").Value <= GameObjects.Player.ManaPercent && E.GetDamage(minion) > minion.Health - ObjectManager.Player.CalculateDamage(minion, DamageType.Physical, 1))
+                    {
+                        E.Cast();
+                    }
                 }
             }
         }
@@ -101,7 +130,7 @@ namespace EzKalista{
             }
             if(mainMenu["Harass"].GetValue<MenuSlider>("mana%").Value <= GameObjects.Player.ManaPercent){
                 if(mainMenu["Harass"].GetValue<MenuBool>("Quse").Enabled){
-                    if(Q.IsReady() && target.IsValidTarget(Q.Range) && input.Hitchance >= HitChance.High){
+                    if(Q.IsReady() && target.IsValidTarget(Q.Range) && input.Hitchance >= HitChance.High && !GameObjects.Player.IsDashing()){
                         Q.Cast(input.UnitPosition);
                     }
                 }
@@ -174,7 +203,7 @@ namespace EzKalista{
             var mobs = GameObjects.Jungle.FirstOrDefault(x => x.IsValidTarget(E.Range));
             var inpput = Q.GetPrediction(mobs);
             if(mobs == null) return;
-            if(mainMenu["Jungle"].GetValue<MenuBool>("Euse").Enabled){
+            if(mainMenu["Jungle"].GetValue<MenuBool>("Euse").Enabled && !GameObjects.Player.IsDashing()){
                 var Edmg = E.GetDamage(mobs);
                 if(mobs.Name.Contains("Dragon") || mobs.Name.Contains("Baron") || mobs.Name.Contains("Herald") || mobs.Name.Contains("golem")){
                     Edmg = Edmg/2;
@@ -206,15 +235,15 @@ namespace EzKalista{
                     }
                 }
             }
-            
         }
-                       
+
         private static void OnGameUpdate(EventArgs args){
             if(GameObjects.Player.IsDead) return;
             WLogic();
             AutoEChase();
             KSLogic();
             SaveAlly();
+            SetSkin();
             switch (Orbwalker.ActiveMode){
                 case OrbwalkerMode.Combo:
                     ComboLogic();
@@ -234,12 +263,27 @@ namespace EzKalista{
                     LaneClearLogic();
                     JungleLogic();
                     break;
+                case OrbwalkerMode.LastHit:
+                    LastHitLogic();
+                    break;
             }
         }
         public static void DrawText(Font fuente, String text, float posx, float posy, SharpDX.ColorBGRA color){
             fuente.DrawText(null,text,(int)posx,(int)posy,color);
         }
         private static void OnDraw(EventArgs args){
+            foreach (var minion in GameObjects.EnemyMinions.Where(x=> x.IsValidTarget(E.Range) && x.HasBuff("kalistaexpungemarker")))
+            {
+                if(minion == null) return;
+                if (mainMenu["Draw"].GetValue<MenuBool>("ecircle").Enabled)
+                {
+                    if (E.GetDamage(minion) >
+                        minion.Health - ObjectManager.Player.CalculateDamage(minion, DamageType.Physical, 1))
+                    {
+                        Render.Circle.DrawCircle(minion.Position,20,Color.Cyan);
+                    }
+                }
+            }
             if(mainMenu["Draw"].GetValue<MenuBool>("lista").Enabled){
                 if(mainMenu["Draw"].GetValue<MenuBool>("qRange").Enabled){
                     if(Q.IsReady()){
@@ -262,7 +306,7 @@ namespace EzKalista{
             if(mainMenu["Draw"].GetValue<MenuBool>("eDamageChamps").Enabled){
                 foreach(var target in GameObjects.EnemyHeroes.Where(z => !z.IsDead && z.IsVisible)){
                     var targetpos = target.HPBarPosition;
-                    var DamagePorcnt = (E.GetDamage(target)/target.Health +target.PhysicalShield)*100;
+                    var DamagePorcnt = MathUtil.Clamp((E.GetDamage(target)/target.Health +target.PhysicalShield)*100,0,100);
                     var toychato = new Vector2(targetpos.X+50,targetpos.Y-45);
                     if(DamagePorcnt != 0){
                         DrawText(TextBold,Math.Round(DamagePorcnt).ToString()+"%",targetpos.X+50,targetpos.Y-70,SharpDX.Color.White);
@@ -277,7 +321,7 @@ namespace EzKalista{
                         var mobs2 = mobs.Position;
                         var mobpos = mobs.HPBarPosition;
                         var Edmg = E.GetDamage(mobs)/2;
-                        var DamagePorcnt = (Edmg/mobs.Health+mobs.PhysicalShield)*100;
+                        var DamagePorcnt = MathUtil.Clamp((Edmg/mobs.Health+mobs.PhysicalShield)*100,0,100);
                         var VectorPos = new Vector2(mobpos.X+50,mobpos.Y-45);
                         if(DamagePorcnt != 0){
                             DrawText(TextBold,Math.Round(DamagePorcnt).ToString()+"%",mobpos.X+50,mobpos.Y-70,SharpDX.Color.White);
