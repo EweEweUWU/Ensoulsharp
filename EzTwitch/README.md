@@ -13,15 +13,28 @@ Hola gente, he estado trabajando en este script un par de días, está en su fas
   - E use if the enemy distance > autoattack range.
 - Kill Steal:
   - Auto E.
+- LaneClear:
+  - Use E.
+  - Minion count to use E.
+  - Mana manager.
+- JungleClear:
+  - Use W.
+  - Use E. 
 - Miscellaneous:
   - Silent back.
   - Skin changer.
 - Draw:
   - Q, W, E, R range.
   - Shows the percentage of damage over the enemy's health. 
+  - Shows the percentage of damage over Drake, Baron and Herald's health.
   - Show R time.
  
-
+**ChangeLog**
+- ***V1.0.1.0***
+  - LaneClear added.
+  - JungleClear added.
+  - Damage porcentage over legendary mobs health added.
+  
 **To do**
 - LaneClear logic.
 - JungleClear logic.
