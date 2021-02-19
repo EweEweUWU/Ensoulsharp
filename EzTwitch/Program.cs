@@ -51,6 +51,18 @@ namespace EzTwitch{
             KS.Add(new MenuBool("Euse", "Auto E to kill", true));
             mainMenu.Add(KS);
 
+            var Farm = new Menu("Farm", "LaneClear Settings");
+            Farm.Add(new MenuBool("Euse", "Use E", false));
+            Farm.Add(new MenuSlider("Eminions", "^ Minions to cast E", 3, 1, 7));
+            Farm.Add(new MenuSlider("mana%", "Mana percentage", 50, 0, 100));
+            mainMenu.Add(Farm);
+
+            var Jungle = new Menu("Jungle", "JungleClear Settings");
+            Jungle.Add(new MenuBool("Wuse", "Use W", true));
+            Jungle.Add(new MenuBool("Euse", "Use E", true));
+            mainMenu.Add(Jungle);
+            
+
             var Misc = new Menu("Misc", "Miscellaneous Settings");
             Misc.Add(new MenuKeyBind("back", "Silent back key", Keys.B, KeyBindType.Press));
             Misc.Add(new MenuSlider("skins", "Set skin", 1, 0, 17));
@@ -63,6 +75,7 @@ namespace EzTwitch{
             Draw.Add(new MenuBool("rangeR","R range",true));
             Draw.Add(new MenuBool("lista","Draw only if spell is ready",true));
             Draw.Add(new MenuBool("Edmg", "Draw E damage on champions"));
+            Draw.Add(new MenuBool("Edmgmob", "Draw E damage on Drake and Baron", true));
             Draw.Add(new MenuBool("Rtime", "Show R time", true));
             mainMenu.Add(Draw);
 
@@ -152,13 +165,58 @@ namespace EzTwitch{
                 if(target==null) return;
                 if (mainMenu["KS"].GetValue<MenuBool>("Euse").Enabled && E.IsReady())
                 {
-                    if (GameObjects.EnemyHeroes.Any(x => E.GetDamage(target) > target.Health - ObjectManager.Player.CalculateDamage(target, DamageType.Physical, 1)))
+                    if (GameObjects.EnemyHeroes.Any(x => E.GetDamage(target) > target.Health - ObjectManager.Player.CalculateDamage(target, DamageType.Mixed, 1)))
                     {
                         E.Cast();
                     }
                 }
             }
-        } 
+        }
+
+        private static void LaneClearLogic()
+        {
+            int cont = 0;
+            foreach (var minion in GameObjects.EnemyMinions.Where(x=> x.IsValidTarget(E.Range)))
+            {
+                if(minion == null) return;
+                
+                var Edmg = E.GetDamage(minion);
+                if (Edmg > minion.Health - ObjectManager.Player.CalculateDamage(minion, DamageType.Mixed, 1) &&
+                    minion.HasBuff("TwitchDeadlyVenom"))
+                {
+                    cont++;
+                }
+
+                if (cont > 0)
+                {
+                    if (mainMenu["Farm"].GetValue<MenuBool>("Euse").Enabled)
+                    {
+                        if (cont >= mainMenu["Farm"].GetValue<MenuSlider>("Eminions").Value && E.IsReady())
+                        {
+                            E.Cast();
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void JungleClearLogic()
+        {
+            var mobs = GameObjects.Jungle.FirstOrDefault(x => x.IsValidTarget(E.Range));
+            var inpput = W.GetPrediction(mobs);
+            if(mobs == null) return;
+            if(mainMenu["Jungle"].GetValue<MenuBool>("Euse").Enabled){
+                var Edmg = E.GetDamage(mobs);
+                if(Edmg>mobs.Health-ObjectManager.Player.CalculateDamage(mobs,DamageType.Mixed,1)){
+                    E.Cast();
+                }
+            }
+            if(mainMenu["Jungle"].GetValue<MenuBool>("Wuse").Enabled){
+                if(mobs.IsValidTarget(W.Range) && inpput.Hitchance >= HitChance.High){
+                    W.Cast(inpput.UnitPosition);
+                }
+            }
+        }
         private static void OnGameUpdate(EventArgs args){
             if(GameObjects.Player.IsDead) return;
             KSLogic();
@@ -172,6 +230,11 @@ namespace EzTwitch{
                 case OrbwalkerMode.Harass:
                     HarassLogic();
                     break;
+                case OrbwalkerMode.LaneClear:
+                    LaneClearLogic();
+                    JungleClearLogic();
+                    break;
+                
             }
             
                 
@@ -232,6 +295,23 @@ namespace EzTwitch{
                     if (DamagePorcnt != 0)
                     {
                         DrawText(TextBold,Math.Round(DamagePorcnt).ToString()+"%",targetpos.X+50,targetpos.Y-70,(DamagePorcnt>=100)? SharpDX.Color.Green: SharpDX.Color.White);
+                    }
+                }
+            }
+
+            if (mainMenu["Draw"].GetValue<MenuBool>("Edmgmob").Enabled)
+            {
+                foreach(var mobs in GameObjects.Jungle.Where(x => x.IsValidTarget(E.Range) && x.HasBuff("TwitchDeadlyVenom"))){
+                    if(mobs == null ) return;
+                    if(mobs.Name.Contains("Dragon") || mobs.Name.Contains("Baron") || mobs.Name.Contains("Herald")){
+                        var mobs2 = mobs.Position;
+                        var mobpos = mobs.HPBarPosition;
+                        var Edmg = E.GetDamage(mobs);
+                        var DamagePorcnt = MathUtil.Clamp((Edmg/mobs.Health+mobs.PhysicalShield)*100,0,100);
+                        if(DamagePorcnt != 0){
+                            DrawText(TextBold,Math.Round(DamagePorcnt).ToString()+"%",mobpos.X+50,mobpos.Y-70,
+                                (DamagePorcnt>=100) ? SharpDX.Color.Green : SharpDX.Color.White);
+                        }
                     }
                 }
             }
