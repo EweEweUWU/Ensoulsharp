@@ -36,6 +36,4 @@ Hola gente, he estado trabajando en este script un par de días, está en su fas
   - Damage porcentage over legendary mobs health added.
   
 **To do**
-- LaneClear logic.
-- JungleClear logic.
 - improve E damage.
