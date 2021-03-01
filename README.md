@@ -1,4 +1,7 @@
 # Ensoulsharp
+
+Join in to my Discord Channel: https://discord.gg/dhrzggqh
+
 This is my repository for uploading the scripts I've been working on, the first being one from Ezreal. I have used as a guide an Annie Script that I found from Toyota7 (https://github.com/Toyota7/EnsoulSharp/tree/master/T7Annie) and also in one of KogMaw from babazhou (https://github.com/babazhou/OtherAssembly/tree/main/KogMaw)
 I hope to improve over time and be able to provide better quality scripts. Any questions you have feel free to speak to my discord EweEwe#6326 or the Ensoul Discord group mentioning me
 
