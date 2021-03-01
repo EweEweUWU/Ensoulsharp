@@ -63,8 +63,15 @@ namespace EzEzreal{
             GameEvent.OnGameTick += OnGameUpdate;
             Drawing.OnDraw += OnDraw;
             Console.Write("EzEzreal loaded");
-            Game.Print("Hi Buddy, enjoy whit EzEzreal.\nMaded by EweEwe");
+            Console.Write("  https://discord.gg/xuuUKAd7N2");
+            msg("Welcome "+GameObjects.Player.Name+"! Enjoy whit EzEzreal, maded by EweEwe");
+            msg("If you want to give feedback, join in to my Discord channel! https://discord.gg/xuuUKAd7N2");
         }
+        public static void msg(string mes)
+        {
+            Game.Print("<font color = '#FFFF00'>[EzEzreal] "+"<font color = '#ffffff'>"+mes);
+        }
+        
         private static void ComboLogic(){
             var target = TargetSelector.GetTarget(Q.Range);
             var input = Q.GetPrediction(target);
