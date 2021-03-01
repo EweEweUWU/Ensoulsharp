@@ -13,7 +13,9 @@ using Font = SharpDX.Direct3D9.Font;
 namespace EzKalista{
     internal class Program{
         public static Font TextBold;
-        
+        private static readonly float[] EBaseDamage = {0, 20, 30, 40, 50, 60, 60};
+        private static readonly float[] EStackBaseDamage = {0, 10, 14, 19, 25, 32, 32};
+        private static readonly float[] EStackMultiplierDamage = {0, .20f, .2375f, .3125f, .35f, .35f};
         private static Spell Q,W,E,R;
         private static Menu mainMenu;
         public static void Main(string[] args){
@@ -54,6 +56,7 @@ namespace EzKalista{
             var Farm = new Menu("Farm","LaneClear Settings");
             Farm.Add(new MenuBool("Euse","Use E",true));
             Farm.Add(new MenuSlider("Eminion","^ Minions to cast E",3,1,5));
+            Farm.Add(new MenuBool("nonkillable", "Use E on non killable minions (BETA)", true));
             Farm.Add(new MenuSlider("mana%","Mana percentage",50,0,100));
             mainMenu.Add(Farm);
 
@@ -90,22 +93,52 @@ namespace EzKalista{
             mainMenu.Attach();
             GameEvent.OnGameTick += OnGameUpdate;
             Drawing.OnDraw += OnDraw;
-            Console.Write("EzKalista Loaded. Maded by EweEwe");
-            Game.Print("<font color = '#FFFF00'>Hi "+GameObjects.Player.Name+" <font color = '#00a6d6'>EzKalista <font color = '#FFFF00'>has been loaded! Enjoy.\nIf you have problems talk to me at discord: <font color = '#00a6d6'>EweEwe#6326");
+            Console.Write("EzKalista loaded");
+            Console.Write("  https://discord.gg/xuuUKAd7N2");
+            msg("Welcome "+GameObjects.Player.Name+"! Enjoy whit EzKalista, maded by EweEwe");
+            msg("If you want to give feedback, join in to my Discord channel! https://discord.gg/xuuUKAd7N2");
             
         }
+        public static void msg(string mes)
+        {
+            Game.Print("<font color = '#00FFFF'>[EzKalista] "+"<font color = '#ffffff'>"+mes);
+        }
 
-        public static void SetSkin(){
-            if (mainMenu["Misc"].GetValue<MenuKeyBind>("setskin").Active){
+        public static float EDamage(AIBaseClient target)
+        {
+            var eLevel = E.Level;
+            var eBaseDamage = EBaseDamage[eLevel] + .6f + GameObjects.Player.TotalAttackDamage;
+            var eStackDamage = EStackBaseDamage[eLevel] +
+                               EStackMultiplierDamage[eLevel] * GameObjects.Player.TotalAttackDamage;
+            var eStacksOnTarget = target.GetBuffCount("kalistaexpungemarker");
+            if(eStacksOnTarget== 0)
+            {
+                return 0;
+            }
+
+            var total = eBaseDamage + eStackDamage * (eStacksOnTarget-1);
+            return (float)(ObjectManager.Player.CalculateDamage(target, DamageType.Physical, total));
+        }
+
+        public static void SetSkin()
+        {
+            if (mainMenu["Misc"].GetValue<MenuKeyBind>("setskin").Active)
+            {
                 GameObjects.Player.SetSkin(mainMenu["Misc"].GetValue<MenuSlider>("skins").Value);
             }
         }
-        private static void ComboLogic(){
+
+        private static void ComboLogic()
+        {
             var target = TargetSelector.GetTarget(Q.Range);
             var input = Q.GetPrediction(target);
-            if(mainMenu["Combo"].GetValue<MenuBool>("Quse").Enabled){
-                if(Q.IsReady() && target.IsValidTarget() && input.Hitchance >= HitChance.High && !GameObjects.Player.IsDashing()){
+            if (mainMenu["Combo"].GetValue<MenuBool>("Quse").Enabled)
+            {
+                if (Q.IsReady() && target.IsValidTarget() && input.Hitchance >= HitChance.High &&
+                    !GameObjects.Player.IsDashing())
+                {
                     Q.Cast(input.UnitPosition);
+                    
                 }
             }
         }
@@ -115,7 +148,7 @@ namespace EzKalista{
             {
                 if (minion == null) return;
                 if (mainMenu["Lasthit"].GetValue<MenuBool>("Euse").Enabled){
-                    if (mainMenu["Lasthit"].GetValue<MenuSlider>("mana%").Value <= GameObjects.Player.ManaPercent && E.GetDamage(minion) > minion.Health - ObjectManager.Player.CalculateDamage(minion, DamageType.Physical, 1))
+                    if (mainMenu["Lasthit"].GetValue<MenuSlider>("mana%").Value <= GameObjects.Player.ManaPercent && EDamage(minion) > minion.Health - ObjectManager.Player.CalculateDamage(minion, DamageType.Physical, 1))
                     {
                         E.Cast();
                     }
@@ -170,7 +203,7 @@ namespace EzKalista{
                 }
                 if(mainMenu["KS"].GetValue<MenuBool>("Euse").Enabled){
                     if(E.IsReady()){
-                        if(GameObjects.EnemyHeroes.Any(x => x.IsValidTarget(E.Range) && E.GetDamage(target)>target.Health-ObjectManager.Player.CalculateDamage(target, DamageType.Physical,1))){
+                        if(GameObjects.EnemyHeroes.Any(x => x.IsValidTarget(E.Range) && EDamage(target)>target.Health-ObjectManager.Player.CalculateDamage(target, DamageType.Physical,1))){
                             E.Cast();
                         }
                     }
@@ -185,7 +218,7 @@ namespace EzKalista{
         private static void LaneClearLogic(){
             int cont = 0;
             foreach(var minion in GameObjects.EnemyMinions.Where(x => x.IsValidTarget(E.Range))){
-                var Edmg = E.GetDamage(minion);
+                var Edmg = EDamage(minion);
                 if(Edmg>minion.Health-ObjectManager.Player.CalculateDamage(minion, DamageType.Physical,1) && minion.HasBuff("kalistaexpungemarker")){
                     cont++;
                 }
@@ -196,6 +229,15 @@ namespace EzKalista{
                         }
                     }
                 }
+
+                if (mainMenu["Farm"].GetValue<MenuBool>("nonkillable").Enabled)
+                {
+                    
+                    if (minion.HasBuff("kalistaexpungemarker") && minion.Health <= 40)
+                    {
+                        E.Cast();
+                    }
+                }
             }
 
         }
@@ -204,11 +246,11 @@ namespace EzKalista{
             var inpput = Q.GetPrediction(mobs);
             if(mobs == null) return;
             if(mainMenu["Jungle"].GetValue<MenuBool>("Euse").Enabled && !GameObjects.Player.IsDashing()){
-                var Edmg = E.GetDamage(mobs);
+                var Edmg = EDamage(mobs);
                 if(mobs.Name.Contains("Dragon") || mobs.Name.Contains("Baron") || mobs.Name.Contains("Herald") || mobs.Name.Contains("golem")){
                     Edmg = Edmg/2;
                 }                                   
-                if(Edmg>mobs.Health){
+                if(Edmg>mobs.Health-ObjectManager.Player.CalculateDamage(mobs,DamageType.Physical,1)){
                     E.Cast();
                 }
             }
@@ -306,10 +348,12 @@ namespace EzKalista{
             if(mainMenu["Draw"].GetValue<MenuBool>("eDamageChamps").Enabled){
                 foreach(var target in GameObjects.EnemyHeroes.Where(z => !z.IsDead && z.IsVisible)){
                     var targetpos = target.HPBarPosition;
-                    var DamagePorcnt = MathUtil.Clamp((E.GetDamage(target)/target.Health +target.PhysicalShield)*100,0,100);
+                    var DamagePorcnt = MathUtil.Clamp((EDamage(target)/target.Health +target.PhysicalShield)*100,0,100);
+                    var current = target.Health / (target.MaxHealth + target.AllShield + target.PhysicalShield +
+                                                     target.MagicalShield);
                     var toychato = new Vector2(targetpos.X+50,targetpos.Y-45);
                     if(DamagePorcnt != 0){
-                        DrawText(TextBold,Math.Round(DamagePorcnt).ToString()+"%",targetpos.X+50,targetpos.Y-70,SharpDX.Color.White);
+                        DrawText(TextBold,Math.Round(DamagePorcnt).ToString()+"%",targetpos.X+50,targetpos.Y-70,(DamagePorcnt>=100) ? SharpDX.Color.Cyan : SharpDX.Color.White);
                     }
                     
                 }
@@ -320,11 +364,11 @@ namespace EzKalista{
                     if(mobs.Name.Contains("Dragon") || mobs.Name.Contains("Baron") || mobs.Name.Contains("Herald")){
                         var mobs2 = mobs.Position;
                         var mobpos = mobs.HPBarPosition;
-                        var Edmg = E.GetDamage(mobs)/2;
+                        var Edmg = EDamage(mobs)/2;
                         var DamagePorcnt = MathUtil.Clamp((Edmg/mobs.Health+mobs.PhysicalShield)*100,0,100);
                         var VectorPos = new Vector2(mobpos.X+50,mobpos.Y-45);
                         if(DamagePorcnt != 0){
-                            DrawText(TextBold,Math.Round(DamagePorcnt).ToString()+"%",mobpos.X+50,mobpos.Y-70,SharpDX.Color.White);
+                            DrawText(TextBold,Math.Round(DamagePorcnt).ToString()+"%",mobpos.X+50,mobpos.Y-70,(DamagePorcnt>=100) ? SharpDX.Color.Cyan : SharpDX.Color.White);
                         }
                     }
                 }
