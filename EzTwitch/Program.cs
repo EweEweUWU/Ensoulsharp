@@ -82,8 +82,14 @@ namespace EzTwitch{
             mainMenu.Attach();
             GameEvent.OnGameTick += OnGameUpdate;
             Drawing.OnDraw += OnDraw;
-            Console.Write("EzTwitch Loaded. Maded by EweEwe");
-            Game.Print("<font color = '#FFFF00'>Hi "+GameObjects.Player.Name+" <font color = '#00a6d6'>EzTwitch <font color = '#FFFF00'>has been loaded! Enjoy.\nIf you have problems talk to me at discord: <font color = '#00a6d6'>EweEwe#6326");
+            Console.Write("EzTwitch loaded");
+            Console.Write("  https://discord.gg/xuuUKAd7N2");
+            msg("Welcome "+GameObjects.Player.Name+"! Enjoy whit EzTwitch, maded by EweEwe");
+            msg("If you want to give feedback, join in to my Discord channel! https://discord.gg/xuuUKAd7N2");
+        }
+        public static void msg(string mes)
+        {
+            Game.Print("<font color = '#008000'>[EzTwitch] "+"<font color = '#ffffff'>"+mes);
         }
 
         public static void SetSkin(){
