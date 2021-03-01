@@ -15,6 +15,7 @@ Antes de mencionar lo que tiene mi script, me gustaría agradecer a babazhou y a
 - Lane Clear:
   - Use E on minions.
   - Choose the number of minions to cast E (between 1 and 5).
+  - E on non killable minions (BETA).
   - Mana Manager.
 - Lasthit:
   - Use E on Lasthit.
@@ -35,6 +36,10 @@ Antes de mencionar lo que tiene mi script, me gustaría agradecer a babazhou y a
   - Draw a circle under E killable minions.
 
 **ChangeLog**
+- ***V1.0.4.0***
+  - Damage improved.
+  - Visuals improved added.
+  - 
 - ***V1.0.3.0***
   - Skin changer added.
   - Q prediction improved.
@@ -48,4 +53,4 @@ Antes de mencionar lo que tiene mi script, me gustaría agradecer a babazhou y a
   
 **To do**
 - Improve R logic.
-- Use E on non killable minions.
+- Fix E damage to legendary mobs.
