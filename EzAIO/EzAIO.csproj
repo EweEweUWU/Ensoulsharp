@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F71A4BB5-2BF8-43E6-9880-7CEC2C676B7F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EzAIO</RootNamespace>
+    <AssemblyName>EzAIO</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <CscToolPath>C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\Roslyn</CscToolPath>
+    <OutputPath>bin\Release</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EnsoulSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a79d4397685f9df0">
+      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\Reference\EnsoulSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="EnsoulSharp.SDK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bcecb37b3b5656dd">
+      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\Reference\EnsoulSharp.SDK.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1">
+      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\Reference\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1">
+      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\Reference\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1">
+      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\Reference\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bases\ChampionBases.cs" />
+    <Compile Include="Bases\DrawingBase.cs" />
+    <Compile Include="Champions\Ezreal\Damage.cs" />
+    <Compile Include="Champions\Ezreal\Extension.cs" />
+    <Compile Include="Champions\Ezreal\Ezreal.cs" />
+    <Compile Include="Champions\Ezreal\Menus.cs" />
+    <Compile Include="Champions\Ezreal\Modes\Automatic.cs" />
+    <Compile Include="Champions\Ezreal\Modes\Combo.cs" />
+    <Compile Include="Champions\Ezreal\Modes\Harass.cs" />
+    <Compile Include="Champions\Ezreal\Modes\JungleClear.cs" />
+    <Compile Include="Champions\Ezreal\Modes\Killsteal.cs" />
+    <Compile Include="Champions\Ezreal\Modes\LaneClear.cs" />
+    <Compile Include="Champions\Ezreal\Modes\Lasthit.cs" />
+    <Compile Include="Champions\Ezreal\Modes\Structureclear.cs" />
+    <Compile Include="Champions\Kalista\Configs.cs" />
+    <Compile Include="Champions\Kalista\Damage.cs" />
+    <Compile Include="Champions\Kalista\DamageIndicator.cs" />
+    <Compile Include="Champions\Kalista\Extension.cs" />
+    <Compile Include="Champions\Kalista\Kalista.cs" />
+    <Compile Include="Champions\Kalista\Menus.cs" />
+    <Compile Include="Champions\Kalista\Modes\Automatic.cs" />
+    <Compile Include="Champions\Kalista\Modes\Combo.cs" />
+    <Compile Include="Champions\Kalista\Modes\Harass.cs" />
+    <Compile Include="Champions\Kalista\Modes\Jungleclear.cs" />
+    <Compile Include="Champions\Kalista\Modes\Killsteal.cs" />
+    <Compile Include="Champions\Kalista\Modes\Laneclear.cs" />
+    <Compile Include="Champions\Kalista\Modes\Lasthit.cs" />
+    <Compile Include="Champions\Lucian\Configs.cs" />
+    <Compile Include="Champions\Lucian\Damage.cs" />
+    <Compile Include="Champions\Lucian\Extension.cs" />
+    <Compile Include="Champions\Lucian\Lucian.cs" />
+    <Compile Include="Champions\Lucian\Menus.cs" />
+    <Compile Include="Champions\Lucian\Modes\Combo.cs" />
+    <Compile Include="Champions\Lucian\Modes\Extra.cs" />
+    <Compile Include="Champions\Lucian\Modes\Harass.cs" />
+    <Compile Include="Champions\Lucian\Modes\Jungleclear.cs" />
+    <Compile Include="Champions\Lucian\Modes\Killsteal.cs" />
+    <Compile Include="Champions\Lucian\Modes\Laneclear.cs" />
+    <Compile Include="Champions\Lucian\Modes\Structureclear.cs" />
+    <Compile Include="Champions\Twitch\Configs.cs" />
+    <Compile Include="Champions\Twitch\Damage.cs" />
+    <Compile Include="Champions\Twitch\DamageIndicator.cs" />
+    <Compile Include="Champions\Twitch\Extension.cs" />
+    <Compile Include="Champions\Twitch\Menus.cs" />
+    <Compile Include="Champions\Twitch\Modes\Automatic.cs" />
+    <Compile Include="Champions\Twitch\Modes\Combo.cs" />
+    <Compile Include="Champions\Twitch\Modes\Harass.cs" />
+    <Compile Include="Champions\Twitch\Modes\Jungleclear.cs" />
+    <Compile Include="Champions\Twitch\Modes\Killsteal.cs" />
+    <Compile Include="Champions\Twitch\Modes\Laneclear.cs" />
+    <Compile Include="Champions\Twitch\Twitch.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+</Project>
