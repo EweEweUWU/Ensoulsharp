@@ -1,10 +1,7 @@
 using System;
 using EnsoulSharp;
 using EnsoulSharp.SDK;
-using EzAIO.Champions.Ezreal;
-using EzAIO.Champions.Kalista;
-using EzAIO.Champions.Lucian;
-using EzAIO.Champions.Twitch;
+using EzAIO.Champions;
 using SharpDX.Direct3D9;
 
 
@@ -12,9 +9,9 @@ namespace EzAIO{
     internal class Program
     {
         public static Font TextBold;
-        public const string version = "1.0.0.0";
+        public const string version = "1.0.0.1";
         private const string disc = "https://discord.gg/xuuUKAd7N2";
-        private const string commit = version + " First release";
+        private const string commit = version + " Kaisa and Vayne Added!";
 
         public static void MSG(string mess)
         {
@@ -44,19 +41,27 @@ namespace EzAIO{
                 switch (GameObjects.Player.CharacterName)
                 {
                     case "Ezreal":
-                        Ezreal.OnGameLoad();
+                        Champions.Ezreal.Ezreal.OnGameLoad();
                         MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Kalista":
-                        Kalista.OnGameLoad();
+                        Champions.Kalista.Kalista.OnGameLoad();
                         MSG(GameObjects.Player.CharacterName+" Loaded!");
                         break;
                     case "Twitch":
-                        Twitch.OnGameLoad();
+                        Champions.Twitch.Twitch.OnGameLoad();
                         MSG(GameObjects.Player.CharacterName+" Loaded!");
                         break;
                     case "Lucian":
-                        Lucian.OnGameLoad();
+                        Champions.Lucian.Lucian.OnGameLoad();
+                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        break;
+                    case "Kaisa":
+                        Champions.Kaisa.Kaisa.OnGameLoad();
+                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        break;
+                    case "Vayne":
+                        Champions.Vayne.Vayne.OnGameLoad();
                         MSG(GameObjects.Player.CharacterName+" Loaded!");
                         break;
                     default:

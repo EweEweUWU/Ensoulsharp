@@ -1,7 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using EnsoulSharp.SDK.MenuUI;
+﻿using EnsoulSharp.SDK.MenuUI;
 using static EzAIO.Champions.Lucian.Configs;
-using EnsoulSharp.SDK;
 using static EzAIO.Bases.DrawingBase;
 using static EzAIO.Champions.Lucian.Lucian;
 namespace EzAIO.Champions.Lucian

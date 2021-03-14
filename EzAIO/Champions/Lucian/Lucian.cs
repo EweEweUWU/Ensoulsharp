@@ -4,7 +4,6 @@ using EnsoulSharp;
 using EnsoulSharp.SDK;
 using EnsoulSharp.SDK.MenuUI;
 using EzAIO.Bases;
-using EzAIO.Bases;
 using EzAIO.Champions.Lucian.Modes;
 using static EzAIO.Champions.Lucian.Configs;
 

@@ -1,5 +1,4 @@
 ﻿using EnsoulSharp.SDK.MenuUI;
-using EzAIO.Bases;
 using static EzAIO.Champions.Kalista.Configs;
 using static EzAIO.Bases.DrawingBase;
 using static EzAIO.Champions.Kalista.Kalista;
@@ -14,43 +13,43 @@ namespace EzAIO.Champions.Kalista
 
         public static void Initialize()
         {
-            var automaticMenu = new Menu("Automatic", "Automatic Settings")
+            var automaticMenu = new Menu("Automatic", "Automatic")
             {
                 AutomaticMenu.RAllysave,
                 AutomaticMenu.WDrake,
                 AutomaticMenu.WBaron,
                 AutomaticMenu.MinionsChase
             };
-            var comboMenu = new Menu("Combo", "Combo Settings")
+            var comboMenu = new Menu("Combo", "Combo")
             {
                 ComboMenu.QBool,
             };
-            var harassMenu = new Menu("Harass", "Harass Settings")
+            var harassMenu = new Menu("Harass", "Harass")
             {
                 HarassMenu.QSliderButton,
                 HarassMenu.ESliderButton
             };
-            var killStealMenu = new Menu("Killsteal", "Killsteal Settings")
+            var killStealMenu = new Menu("Killsteal", "Kill Steal")
             {
                 KillstealMenu.QSBool,
                 KillstealMenu.EBool
             };
-            var laneClearMenu = new Menu("Laneclear", "Laneclear Settings")
+            var laneClearMenu = new Menu("Laneclear", "Lane Clear")
             {
                 Laneclear.ESliderButton,
                 Laneclear.Eminion,
                 Laneclear.EBool
             };
-            var lastHitMenu = new Menu("LastHit", "Lasthit Settings")
+            var lastHitMenu = new Menu("LastHit", "Last Hit")
             {
                 Lasthit.ESliderButton
             };
-            var jungleclearMenu = new Menu("Jungleclear", "JungleClear Settings")
+            var jungleclearMenu = new Menu("Jungleclear", "Jungle Clear")
             {
                 Jungleclear.QSliderButton,
                 Jungleclear.ESliderButton
             };
-            var drawMenu = new Menu("Draw", "Draw Settings")
+            var drawMenu = new Menu("Draw", "Draw")
             {
                 DrawMenu.QBool,
                 DrawMenu.WBool,
