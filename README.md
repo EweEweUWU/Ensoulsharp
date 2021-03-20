@@ -4,7 +4,7 @@ Join in to my Discord Channel: https://discord.gg/xuuUKAd7N2"
 
 **EzAIO**
 
-EzIO is my own ME, I will look to add as many champions as I can. I hope you like it, if you have any questions, do not hesitate to enter my discord, as well as give me feedback to see how to improve my AIO.
+EzIO is my own AIO, I will look to add as many champions as I can. I hope you like it, if you have any questions, do not hesitate to enter my discord, as well as give me feedback to see how to improve my AIO.
 Over time I will implement more things.
 
 Credits to babazhou for helping me with various aspects of the code.
@@ -17,8 +17,10 @@ Créditos a babazhou por ayudarme en muchos aspectos del código.
 
 - Ezreal.
 - Kalista.
+- Kaisa.
 - Lucian.
-- Twitch
+- Twitch.
+- Vayne.
 
 **To do**
 
