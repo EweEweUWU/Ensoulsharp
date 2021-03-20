@@ -6,6 +6,7 @@ using EnsoulSharp.SDK;
 using SharpDX;
 using static EzAIO.Champions.Vayne.Configs;
 using EzAIO.Bases;
+using EzAIO.Extras;
 
 namespace EzAIO.Champions.Vayne
 {
@@ -42,7 +43,7 @@ namespace EzAIO.Champions.Vayne
 
             var a = (radius1 * radius1 - radius2 * radius2 + d * d) / (2 * d);
             var h = (float) Math.Sqrt(radius1 * radius1 - a * a);
-            var direction = (center2 - center1).Normalized();
+            var direction = Vector2Extensions.Normalized((center2 - center1));
             var pa = center1 + a * direction;
             var s1 = pa + h * direction.Perpendicular();
             var s2 = pa - h * direction.Perpendicular();
@@ -148,6 +149,7 @@ namespace EzAIO.Champions.Vayne
 
                     return false;
                 }
+
             }
 
             return false;

@@ -44,6 +44,7 @@ namespace EzAIO.Champions.Kaisa
                     Extra.CastW(args);
                     break;
                 case OrbwalkerMode.LaneClear:
+                    var target = args.Target as AIMinionClient;
                     if (E.IsReady())
                     {
                         Jungleclear.CastE();
@@ -51,7 +52,10 @@ namespace EzAIO.Champions.Kaisa
                     }
                     if (W.IsReady())
                     {
-                        Jungleclear.CastW(args);
+                        if (target.IsJungle())
+                        {
+                            Jungleclear.CastW(args);
+                        }
                     }
                     break;
             }

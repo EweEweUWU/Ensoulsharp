@@ -1,17 +1,25 @@
 using System;
 using EnsoulSharp;
 using EnsoulSharp.SDK;
-using EzAIO.Champions;
+using EnsoulSharp.SDK.MenuUI;
 using SharpDX.Direct3D9;
+using static EzAIO.SupportedChamps;
 
 
 namespace EzAIO{
     internal class Program
     {
         public static Font TextBold;
-        public const string version = "1.0.0.1";
+        public const string version = "1.0.0.3";    
         private const string disc = "https://discord.gg/xuuUKAd7N2";
-        private const string commit = version + " Kaisa and Vayne Added!";
+        private const string commit = version + " Katarina Added!"; 
+        public static Menu champs;
+
+        private Program()
+        {
+            new SupportedChamps();
+        }
+        
 
         public static void MSG(string mess)
         {
@@ -64,6 +72,10 @@ namespace EzAIO{
                         Champions.Vayne.Vayne.OnGameLoad();
                         MSG(GameObjects.Player.CharacterName+" Loaded!");
                         break;
+                    case "Katarina":
+                        Champions.Katarina.Katarina.OnGameLoad();
+                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        break;
                     default:
                         MSG(GameObjects.Player.CharacterName + " not supported!");
                         break;
@@ -74,6 +86,10 @@ namespace EzAIO{
                 MSG("Error loading the AIO.");
                 throw;
             }
+
+            champs = new Menu("AIOChamps", "[EzAIO] SupportedChamps", true);
+            SupportedChamps.Initialize();
+            champs.Attach();
             MSG(commit);
             MSG("Enter my Discord server! "+disc);
         }

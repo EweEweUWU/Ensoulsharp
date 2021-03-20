@@ -43,7 +43,7 @@ namespace EzAIO.Champions.Kaisa.Modes
             var winput = W.GetPrediction(wtarget);
             if (winput.Hitchance >= HitChance.High)
             {
-                W.Cast(winput.UnitPosition);
+                W.Cast(winput.CastPosition);
             }
         }
 

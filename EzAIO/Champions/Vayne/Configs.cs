@@ -41,7 +41,6 @@ namespace EzAIO.Champions.Vayne
             public static readonly MenuBool EBool =
                 new MenuBool("e", "Use E");
             
-
             public static MenuKeyBind ESmiKeybind =
                 new MenuKeyBind("eSemi", "E Semi-Auto Cast", Keys.E, KeyBindType.Press);
         }

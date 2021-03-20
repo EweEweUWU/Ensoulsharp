@@ -10,7 +10,7 @@ using EzAIO;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EweEwe")]
 [assembly: AssemblyProduct("EzAIO")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

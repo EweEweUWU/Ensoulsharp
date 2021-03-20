@@ -35,6 +35,8 @@ namespace EzAIO.Champions.Lucian
                 ComboMenu.RSemi
                 
             };
+            ComboMenu.ComboList.Permashow();
+            ComboMenu.EMode.Permashow();
             var harassMenu = new Menu("Harass", "Harass")
             {
                 HarassMenu.QnormalSlider,

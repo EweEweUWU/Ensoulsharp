@@ -94,7 +94,7 @@ namespace EzAIO.Champions.Lucian
         public static class StructureclearMenu
         {
             public static readonly MenuSliderButton WSlider =
-                new MenuSliderButton("w", "Use W | If Mana >= x%", 50, 1, 00);
+                new MenuSliderButton("w", "Use W | If Mana >= x%", 50, 1, 100);
 
             public static readonly MenuSliderButton ESlider =
                 new MenuSliderButton("e", "Use E | If Mana >= x%", 50, 1, 100);

@@ -97,6 +97,17 @@
     <Compile Include="Champions\Kalista\Modes\Killsteal.cs" />
     <Compile Include="Champions\Kalista\Modes\Laneclear.cs" />
     <Compile Include="Champions\Kalista\Modes\Lasthit.cs" />
+    <Compile Include="Champions\Katarina\Configs.cs" />
+    <Compile Include="Champions\Katarina\Damage.cs" />
+    <Compile Include="Champions\Katarina\Extension.cs" />
+    <Compile Include="Champions\Katarina\Katarina.cs" />
+    <Compile Include="Champions\Katarina\Menus.cs" />
+    <Compile Include="Champions\Katarina\Modes\Combo.cs" />
+    <Compile Include="Champions\Katarina\Modes\Flee.cs" />
+    <Compile Include="Champions\Katarina\Modes\Harass.cs" />
+    <Compile Include="Champions\Katarina\Modes\Jungleclear.cs" />
+    <Compile Include="Champions\Katarina\Modes\Killsteal.cs" />
+    <Compile Include="Champions\Katarina\Modes\Laneclear.cs" />
     <Compile Include="Champions\Lucian\Configs.cs" />
     <Compile Include="Champions\Lucian\Damage.cs" />
     <Compile Include="Champions\Lucian\Extension.cs" />
@@ -139,6 +150,7 @@
     <Compile Include="Extras\VectorConversions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupportedChamps.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
