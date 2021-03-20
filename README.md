@@ -18,6 +18,7 @@ Créditos a babazhou por ayudarme en muchos aspectos del código.
 - Ezreal.
 - Kalista.
 - Kaisa.
+- Katarina
 - Lucian.
 - Twitch.
 - Vayne.
