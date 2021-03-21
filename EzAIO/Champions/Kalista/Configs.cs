@@ -49,7 +49,7 @@ namespace EzAIO.Champions.Kalista
                 new MenuSlider("Eminion", "^ Minions to cast E", 2, 1, 7);
 
             public static readonly MenuBool EBool =
-                new MenuBool("nonkillable", "Use E on non killable Minions (BETA)");
+                new MenuBool("nonkillable", "Use E on non killable Minions");
 
         }
         public static class Lasthit

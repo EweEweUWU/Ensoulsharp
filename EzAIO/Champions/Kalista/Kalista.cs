@@ -7,6 +7,7 @@ using EnsoulSharp.SDK.MenuUI;
 using EzAIO.Bases;
 using static EzAIO.Bases.DrawingBase;
 using EzAIO.Champions.Kalista.Modes;
+using static EzAIO.Champions.Kalista.Damage;
 
 namespace EzAIO.Champions.Kalista
 {
@@ -37,6 +38,29 @@ namespace EzAIO.Champions.Kalista
             GameEvent.OnGameTick += OnGameUpdate;
             Drawing.OnDraw += OnDraw;
             Drawing.OnEndScene += OnEndScene;
+            Orbwalker.OnNonKillableMinion += OnNonKillables;
+        }
+
+        private static void OnNonKillables(object sender, NonKillableMinionEventArgs args)
+        {
+            if (!Configs.Laneclear.EBool.Enabled || !E.IsReady())
+            {
+                return;
+            }
+
+            var minion = args.Target as AIMinionClient;
+            if (minion == null)
+            {
+                return;
+            }
+            if (EDamage(minion) >= minion.Health - GameObjects.Player.CalculateDamage(minion, DamageType.Physical, 1) &&
+                Extension.HasRendBuff(minion,E.Range))
+            {
+                if (HealthPrediction.GetPrediction(minion, 250) > 0)
+                {
+                    E.Cast();
+                }
+            }
         }
 
         private static void OnGameUpdate(EventArgs args)

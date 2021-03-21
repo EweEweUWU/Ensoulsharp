@@ -32,7 +32,7 @@ namespace EzAIO.Champions.Katarina
             W = new Spell(SpellSlot.W, 400f);
             E = new Spell(SpellSlot.E, 725f);
             R = new Spell(SpellSlot.R, 550f);
-            mainMenu = new Menu("Katarina", "[EzAIO] Katarina", true);
+            mainMenu = new Menu("Katarina", "[EzAIO] EzKatarina", true);
             Menus.Initialize();
             mainMenu.Attach();
             GameEvent.OnGameTick += OnGameUpdate;
