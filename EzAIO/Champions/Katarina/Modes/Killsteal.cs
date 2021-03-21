@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using EnsoulSharp;
 using EnsoulSharp.SDK;
 using EzAIO.Bases;
 using static EzAIO.Champions.Katarina.Configs;
@@ -83,7 +84,7 @@ namespace EzAIO.Champions.Katarina.Modes
                     {
                         Extension.CastingR = false;
                     }
-
+                    
                     E.Cast(dagger.Position.Extend(target.Position, 200));
                     break;
                 }
@@ -103,7 +104,6 @@ namespace EzAIO.Champions.Katarina.Modes
                 {
                     Extension.CastingR = false;
                 }
-
                 E.Cast(target.Position.Extend(GameObjects.Player.Position, -50));
                 break;
             }

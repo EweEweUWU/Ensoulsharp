@@ -11,6 +11,9 @@ namespace EzAIO.Champions.Katarina
 
             public static readonly MenuBool Magnet =
                 new MenuBool("magnet", "Magnet to Daggers", false);
+
+            public static readonly MenuBool SmartSaveBool =
+                new MenuBool("save", "Smart save if Hero under Enemy Turret");
         }
 
         public static class ComboMenu

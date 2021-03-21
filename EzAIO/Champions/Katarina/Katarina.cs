@@ -7,7 +7,9 @@ using EzAIO.Bases;
 using static EzAIO.Champions.Katarina.Configs;
 using EzAIO.Champions.Katarina.Modes;
 using SharpDX;
+using static EzAIO.Champions.Katarina.Damage;
 using static EzAIO.Bases.DrawingBase;
+using static EzAIO.Program;
 namespace EzAIO.Champions.Katarina
 {
     sealed class Katarina : ChampionBases

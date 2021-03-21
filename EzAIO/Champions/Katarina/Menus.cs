@@ -16,7 +16,9 @@ namespace EzAIO.Champions.Katarina
             var miscellaneousMenu = new Menu("Miscellaneous", "Miscellaneous")
             {
                 MiscellaneousMenu.DetectLanded,
-                MiscellaneousMenu.Magnet
+                MiscellaneousMenu.Magnet,
+                MiscellaneousMenu.SmartSaveBool
+                
             };
             var comboMenu = new Menu("Combo", "Combo")
             {

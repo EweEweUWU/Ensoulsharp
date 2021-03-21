@@ -33,6 +33,26 @@ namespace EzAIO.Champions.Katarina.Modes
                 CastW();
                 CastQ();
             }
+
+            if (MiscellaneousMenu.SmartSaveBool.Enabled && E.IsReady())
+            {
+                if (GameObjects.Player.IsUnderEnemyTurret() && GameObjects.Player.CountEnemyHeroesInRange(Q.Range) == 0)
+                {
+                    foreach (var bObject in GameObjects.AttackableUnits.Where(x=>x.IsTargetable &&
+                        x.DistanceToPlayer()<=E.Range &&
+                        x.Position.IsUnderEnemyTurret() == false))
+                    {
+                        if (bObject == null)
+                        {
+                            return;
+                        }
+
+                        E.Cast(bObject.Position);
+                        break;
+                    }
+                }
+            }
+            
         }
 
         private static void CastQ()
@@ -92,7 +112,7 @@ namespace EzAIO.Champions.Katarina.Modes
             }
 
             var wtarget = TargetSelector.GetTarget(W.Range);
-            if (wtarget == null)
+            if (wtarget == null || !wtarget.InAutoAttackRange())
             {
                 return;
             }

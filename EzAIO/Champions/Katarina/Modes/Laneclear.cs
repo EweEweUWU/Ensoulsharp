@@ -32,7 +32,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            if (LaneclearMenu.WSliderButton.Value > GameObjects.GetMinions(450).Count())
+            if (LaneclearMenu.WSliderButton.Value > GameObjects.GetMinions(300).Count())
             {
                 return;
             }
@@ -76,7 +76,7 @@ namespace EzAIO.Champions.Katarina.Modes
             }
 
             var dagger = Extension.Daggers.Where(x =>
-                    (GameObjects.EnemyMinions.Count(t => t.IsValidTarget(450)) > LaneclearMenu.ESliderButton.Value) &&
+                    (GameObjects.EnemyMinions.Count(t => t.IsValidTarget(450,false,x.Position)) > LaneclearMenu.ESliderButton.Value) &&
                     x.DistanceToPlayer() <= E.Range + 50)
                 .OrderByDescending(x => (GameObjects.EnemyMinions.Count(t => t.IsValidTarget(450)))).FirstOrDefault();
             if (dagger == null)
@@ -84,7 +84,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            if (LaneclearMenu.ETurretBool.Enabled && GameObjects.Player.Position.IsUnderEnemyTurret())
+            if (LaneclearMenu.ETurretBool.Enabled && (GameObjects.Player.Position.IsUnderEnemyTurret() || dagger.Position.IsUnderEnemyTurret()))
             {
                 return;
             }
