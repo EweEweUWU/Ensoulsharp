@@ -10,7 +10,7 @@ namespace EzAIO{
     internal class Program
     {
         public static Font TextBold;
-        public const string version = "1.0.0.3";    
+        public const string version = "1.0.0.4";    
         private const string disc = "https://discord.gg/xuuUKAd7N2";
         private const string commit = version + " Katarina Added!"; 
         public static Menu champs;
