@@ -10,9 +10,9 @@ namespace EzAIO{
     internal class Program
     {
         public static Font TextBold;
-        public const string version = "1.0.5.0";    
+        public const string version = "1.0.6.0";    
         private const string disc = "https://discord.gg/xuuUKAd7N2";
-        private const string commit = version + " Katarina Added!"; 
+        private const string commit = version + " Draven Added!"; 
         public static Menu champs;
 
         private Program()
@@ -74,6 +74,10 @@ namespace EzAIO{
                         break;
                     case "Katarina":
                         Champions.Katarina.Katarina.OnGameLoad();
+                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        break;
+                    case "Draven":
+                        Champions.Draven.Draven.OnGameLoad();
                         MSG(GameObjects.Player.CharacterName+" Loaded!");
                         break;
                     default:

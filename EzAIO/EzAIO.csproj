@@ -60,6 +60,18 @@
   <ItemGroup>
     <Compile Include="Bases\ChampionBases.cs" />
     <Compile Include="Bases\DrawingBase.cs" />
+    <Compile Include="Champions\Draven\Configs.cs" />
+    <Compile Include="Champions\Draven\Damage.cs" />
+    <Compile Include="Champions\Draven\Draven.cs" />
+    <Compile Include="Champions\Draven\Extension.cs" />
+    <Compile Include="Champions\Draven\Menus.cs" />
+    <Compile Include="Champions\Draven\Modes\Automatic.cs" />
+    <Compile Include="Champions\Draven\Modes\Combo.cs" />
+    <Compile Include="Champions\Draven\Modes\Harass.cs" />
+    <Compile Include="Champions\Draven\Modes\Jungleclear.cs" />
+    <Compile Include="Champions\Draven\Modes\Killsteal.cs" />
+    <Compile Include="Champions\Draven\Modes\Laneclear.cs" />
+    <Compile Include="Champions\Draven\Modes\Structureclear.cs" />
     <Compile Include="Champions\Ezreal\Damage.cs" />
     <Compile Include="Champions\Ezreal\Extension.cs" />
     <Compile Include="Champions\Ezreal\Ezreal.cs" />
