@@ -1,6 +1,6 @@
 # Ensoulsharp
 
-Join in to my Discord Channel: https://discord.gg/xuuUKAd7N2"
+Join in to my Discord Channel: https://discord.gg/xuuUKAd7N2
 
 **EzAIO**
 
