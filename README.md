@@ -29,8 +29,4 @@ Créditos a babazhou por ayudarme en muchos aspectos del código.
 - Add more champs.
 - BaseUlt
 
-**=========================================================================================================================================================================**
-
-
-**Simple Template for new Developers.*
 
