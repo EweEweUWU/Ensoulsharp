@@ -27,7 +27,7 @@ namespace EzAIO.Champions.Ezreal.Modes
                 var qinpupt = Q.GetPrediction(priorityTarget);
                 if (qinpupt.Hitchance >= HitChance.High)
                 {
-                    Q.Cast(qinpupt.UnitPosition);
+                    Q.Cast(qinpupt.CastPosition);
                 }
             }
 
@@ -42,7 +42,7 @@ namespace EzAIO.Champions.Ezreal.Modes
                 var qinput = Q.GetPrediction(target);
                 if (qinput.Hitchance >= HitChance.High)
                 {
-                    Q.Cast(qinput.UnitPosition);
+                    Q.Cast(qinput.CastPosition);
                 }
 
             }
@@ -66,7 +66,7 @@ namespace EzAIO.Champions.Ezreal.Modes
                 return;
             }
 
-            var wtarget = TargetSelector.GetTarget(W.Range);
+            var wtarget = W.GetTarget();
             if (wtarget == null)
             {
                 return;
@@ -75,7 +75,7 @@ namespace EzAIO.Champions.Ezreal.Modes
             var winput = W.GetPrediction(wtarget);
             if (winput.Hitchance >= HitChance.High)
             {
-                W.Cast(winput.UnitPosition);
+                W.Cast(winput.CastPosition);
             }
         }
     }

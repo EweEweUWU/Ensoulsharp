@@ -32,10 +32,10 @@ namespace EzAIO.Champions.Draven
 
             Q = new Spell(SpellSlot.Q);
             W = new Spell(SpellSlot.W);
-            E = new Spell(SpellSlot.E, 1100);
-            E.SetSkillshot(.25f,260f,1400f,false,SpellType.Line);
-            R = new Spell(SpellSlot.R, MiscellaneousMenu.RRangeSlider.Value);
-            R.SetSkillshot(.5f,320f,2000f,false,SpellType.Line);
+            E = new Spell(SpellSlot.E, 1100){AddHitBox = true};
+            E.SetSkillshot(.25f*4,260f,float.MaxValue,false,SpellType.Line);
+            R = new Spell(SpellSlot.R, MiscellaneousMenu.RRangeSlider.Value){AddHitBox = true};
+            R.SetSkillshot(.5f*4,320f,float.MaxValue,false,SpellType.Line);
             mainMenu = new Menu("Draven", "[EzAIO] EzDraven", true);
             Menus.Initialize();
             mainMenu.Attach();

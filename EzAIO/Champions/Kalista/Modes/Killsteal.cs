@@ -27,7 +27,7 @@ namespace EzAIO.Champions.Kalista.Modes
                 var qinput = Q.GetPrediction(target);
                 if (qinput.Hitchance >= HitChance.High)
                 {
-                    Q.Cast(qinput.UnitPosition);
+                    Q.Cast(qinput.CastPosition);
                 }
             }
         }

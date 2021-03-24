@@ -27,7 +27,7 @@ namespace EzAIO.Champions.Ezreal.Modes
                 var qinput = Q.GetPrediction(target);
                 if (qinput.Hitchance >= HitChance.High)
                 {
-                    Q.Cast(qinput.UnitPosition);
+                    Q.Cast(qinput.CastPosition);
                 }
 
             }
@@ -46,7 +46,7 @@ namespace EzAIO.Champions.Ezreal.Modes
                 var rinput = R.GetPrediction(target);
                 if (rinput.Hitchance >= HitChance.High)
                 {
-                    R.Cast(rinput.UnitPosition);
+                    R.Cast(rinput.CastPosition);
                 }
 
             }

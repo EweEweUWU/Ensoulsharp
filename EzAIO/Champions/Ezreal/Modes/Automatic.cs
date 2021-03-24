@@ -20,16 +20,16 @@ namespace EzAIO.Champions.Ezreal.Modes
                 return;
             }
 
-            var qtarget = TargetSelector.GetTarget(Q.Range);
+            var qtarget = Q.GetTarget();
             if (qtarget == null)
             {
                 return;
             }
 
             var qinput = Q.GetPrediction(qtarget);
-            if (qinput.Hitchance >= HitChance.High)
+            if (qinput.Hitchance >= HitChance.High && Q.IsInRange(qinput.CastPosition))
             {
-                Q.Cast(qinput.UnitPosition);
+                Q.Cast(qinput.CastPosition);
             }
         }
 

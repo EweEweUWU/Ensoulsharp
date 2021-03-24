@@ -30,8 +30,8 @@ namespace EzAIO.Champions.Lucian
             Q = new Spell(SpellSlot.Q, 500f + GameObjects.Player.BoundingRadius);
             ExtendedQ = new Spell(SpellSlot.Q, 1000f - GameObjects.Player.BoundingRadius);
             ExtendedQ.SetSkillshot(.25f,65f,float.MaxValue,false,SpellType.Line);
-            W = new Spell(SpellSlot.W, 900f);
-            W.SetSkillshot(.25f,80f,1600f,true,SpellType.Line);
+            W = new Spell(SpellSlot.W, 900f) {AddHitBox = true};
+            W.SetSkillshot(.25f*4,40f,float.MaxValue,true,SpellType.Line);
             E = new Spell(SpellSlot.E, GameObjects.Player.GetRealAutoAttackRange() + 425f);
             R = new Spell(SpellSlot.R, 1150f);
             R.SetSkillshot(.25f,120f,2500f,true,SpellType.Line);

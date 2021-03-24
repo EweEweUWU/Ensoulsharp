@@ -24,8 +24,8 @@ namespace EzAIO.Champions.Kaisa
             }
 
             Q = new Spell(SpellSlot.Q, GameObjects.Player.GetRealAutoAttackRange() + GameObjects.Player.BoundingRadius);
-            W = new Spell(SpellSlot.W, 3000f);
-            W.SetSkillshot(.4f,200f,1700f,true,SpellType.Line);
+            W = new Spell(SpellSlot.W, 3000f) {AddHitBox = true};
+            W.SetSkillshot(.4f*4,100f,float.MaxValue,true,SpellType.Line);
             E = new Spell(SpellSlot.E);
             R = new Spell(SpellSlot.R, 1500 + 750 * (GameObjects.Player.Spellbook.GetSpell(SpellSlot.R).Level -1));
             mainMenu = new Menu("Kaisa", "[EzAIO] EzKaisa", true);

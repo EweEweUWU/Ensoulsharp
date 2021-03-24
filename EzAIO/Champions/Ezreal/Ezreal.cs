@@ -26,13 +26,13 @@ namespace EzAIO.Champions.Ezreal
             {
                 return;
             }
-            Q = new Spell(SpellSlot.Q, 1200f);
-            Q.SetSkillshot(.25f, 120f, 2000f, true, SpellType.Line);
-            W = new Spell(SpellSlot.W, 1200f);
-            W.SetSkillshot(.25f, 160f, 1700f, false, SpellType.Line);
+            Q = new Spell(SpellSlot.Q, 1200f) {AddHitBox = true};
+            Q.SetSkillshot(.25f*4, 100f, float.MaxValue, true, SpellType.Line); //120
+            W = new Spell(SpellSlot.W, 1200f) {AddHitBox = true};
+            W.SetSkillshot(.25f*4, 130f, float.MaxValue, false, SpellType.Line); //160
             E = new Spell(SpellSlot.E, 475f);
-            R = new Spell(SpellSlot.R, 5000f);
-            R.SetSkillshot(1f, 320f, 2000f, false, SpellType.Line);
+            R = new Spell(SpellSlot.R, 5000f) {AddHitBox = true};
+            R.SetSkillshot(1f*2, 160f, float.MaxValue, false, SpellType.Line); //320
             
             mainMenu = new Menu("Ezreal", "[EzAIO] EzEzreal",true);
             Menus.Initialize();

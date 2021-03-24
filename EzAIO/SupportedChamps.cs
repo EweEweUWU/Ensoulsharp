@@ -25,6 +25,7 @@ namespace EzAIO
             };
             var ADCMenu = new Menu("ADC", "ADC")
             {
+                new MenuSeparator("sep7","Draven"),
                 new MenuSeparator("sep1", "Ezreal"),
                 new MenuSeparator("sep2", "Kaisa"),
                 new MenuSeparator("sep3", "Kalista"),

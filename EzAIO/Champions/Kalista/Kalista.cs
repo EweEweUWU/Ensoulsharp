@@ -27,8 +27,8 @@ namespace EzAIO.Champions.Kalista
                 return;
             }
 
-            Q = new Spell(SpellSlot.Q, 1150f);
-            Q.SetSkillshot(.25f,80f,2100f,true,SpellType.Line);
+            Q = new Spell(SpellSlot.Q, 1150f) {AddHitBox = true};
+            Q.SetSkillshot(.25f*4,30f,float.MaxValue,true,SpellType.Line);
             W = new Spell(SpellSlot.W, 5000f);
             E = new Spell(SpellSlot.E, 1000f);
             R = new Spell(SpellSlot.R, 1200f);

@@ -16,7 +16,7 @@ namespace EzAIO.Champions.Ezreal.Modes
             {
                 return;
             }
-            var qtarget = TargetSelector.GetTarget(1200f);
+            var qtarget = Q.GetTarget();
             if (qtarget == null)
             {
                 return;
@@ -30,15 +30,15 @@ namespace EzAIO.Champions.Ezreal.Modes
             if (priorityTarget != null)
             {
                 var qinpupt = Q.GetPrediction(priorityTarget);
-                if (qinpupt.Hitchance >= HitChance.High)
+                if (qinpupt.Hitchance >= HitChance.High && Q.IsInRange(qinpupt.CastPosition))
                 {
-                    Q.Cast(qinpupt.UnitPosition);
+                    Q.Cast(qinpupt.CastPosition);
                 }
             }
             var qinput = Q.GetPrediction(qtarget);
-            if (qinput.Hitchance >= HitChance.High)
+            if (qinput.Hitchance >= HitChance.High && Q.IsInRange(qinput.CastPosition))
             {
-                Q.Cast(qinput.UnitPosition);
+                Q.Cast(qinput.CastPosition);
             }
         }
 
@@ -49,7 +49,7 @@ namespace EzAIO.Champions.Ezreal.Modes
                 return;
             }
 
-            var wtarget = TargetSelector.GetTarget(W.Range);
+            var wtarget = W.GetTarget();
             if (wtarget == null)
             {
                 return;
@@ -61,9 +61,9 @@ namespace EzAIO.Champions.Ezreal.Modes
             }
 
             var winput = W.GetPrediction(wtarget);
-            if (winput.Hitchance >= HitChance.High)
+            if (winput.Hitchance >= HitChance.High && W.IsInRange(winput.CastPosition))
             {
-                W.Cast(winput.UnitPosition);
+                W.Cast(winput.CastPosition);
             }
 
         }
@@ -74,11 +74,12 @@ namespace EzAIO.Champions.Ezreal.Modes
             {
                 return;
             }
-            var rtarget = TargetSelector.GetTarget(R.Range);
+
+            var rtarget = R.GetTarget();
             var rinput = R.GetPrediction(rtarget);
-            if(rinput.Hitchance>=HitChance.High)
+            if(rinput.Hitchance>=HitChance.High && R.IsInRange(rinput.CastPosition))
             {
-                R.Cast(rinput.UnitPosition);
+                R.Cast(rinput.CastPosition);
             }
         }
     }
