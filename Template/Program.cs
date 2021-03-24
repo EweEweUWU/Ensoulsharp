@@ -46,9 +46,16 @@ namespace Template
             Drawing.OnDraw += OnDraw;
         }
         private static void OnGameUpdate(EventArgs args){
+            switch (Orbwalker.ActiveMode)
+            { //This switch will be in charge of verifying in which mode the Orbwalker is being used at that moment.
+                case OrbwalkerMode.Combo: 
+                    //In the event that the Orbwalker is in Combo mode. The function that we have defined will be executed.
+                    ComboLogic();
+                    break;
+            }
 
         }
-        private static void Combo(){
+        private static void ComboLogic(){
             var target = TargetSelector.GetTarget(Q.Range) //Getting a target in the Q range.
             if(target == null) return; //if there is no target, do nothing.
 
