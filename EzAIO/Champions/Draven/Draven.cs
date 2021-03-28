@@ -112,7 +112,7 @@ namespace EzAIO.Champions.Draven
         {
             if (Extension.CanCatchAxe() && MiscellaneousMenu.BlockMovementBool.Enabled)
             {
-                args.Process = true;
+                args.Process = false;
                 return;
             }
 
@@ -211,7 +211,12 @@ namespace EzAIO.Champions.Draven
                             Jungleclear.CastQ();
                         }
                     }
+
                     break;
+            }
+            if (MiscellaneousMenu.WaitAxeBool.Enabled && !Extension.HasAxeInHand() && Extension.CanCatchAxe())
+            {
+                args.Process = false;
             }
         }
 

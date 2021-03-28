@@ -2,18 +2,19 @@ using System;
 using EnsoulSharp;
 using EnsoulSharp.SDK;
 using EnsoulSharp.SDK.MenuUI;
+using EzAIO.Utilities.BaseUlt;
 using SharpDX.Direct3D9;
 using static EzAIO.SupportedChamps;
-
+using EzAIO.Utilities.BaseUlt;
 
 namespace EzAIO{
     internal class Program
     {
         public static Font TextBold;
-        public const string version = "1.0.6.1";    
+        public const string version = "1.0.7.0";    
         private const string disc = "https://discord.gg/xuuUKAd7N2";
-        private const string commit = version + " Draven Added!"; 
-        public static Menu champs;
+        private const string commit = version + " BaseUlt Added!"; 
+        public static Menu util;
 
         private Program()
         {
@@ -91,9 +92,11 @@ namespace EzAIO{
                 throw;
             }
 
-            champs = new Menu("AIOChamps", "[EzAIO] SupportedChamps", true);
-            SupportedChamps.Initialize();
-            champs.Attach();
+            util = new Menu("AIOChamps", "[EzAIO] Utilities", true);
+            Initialize();
+            Menus.Initialize();
+            BaseUlt.OnGameLoad();
+            util.Attach();
             MSG(commit);
             MSG("Enter my Discord server! "+disc);
         }

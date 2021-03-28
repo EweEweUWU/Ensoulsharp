@@ -16,6 +16,7 @@ namespace EzAIO.Champions.Draven
             var miscellaneousMenu = new Menu("Miscellaneous", "Miscellaneous")
             {
                 MiscellaneousMenu.RRangeSlider,
+                MiscellaneousMenu.WaitAxeBool,
                 MiscellaneousMenu.MagnetToMarkSliderButton,
                 MiscellaneousMenu.MagnetRangeSliderButton,
                 MiscellaneousMenu.BlockMovementBool

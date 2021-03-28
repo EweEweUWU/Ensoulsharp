@@ -4,12 +4,14 @@ namespace EzAIO
 {
     class SupportedChamps
     {
+        private static Menu champs;
         public SupportedChamps()
         {
             Initialize();
         }
         public static void Initialize()
         {
+            champs = new Menu("AIOSupport", "Supported Champs");
             var TOPMenu = new Menu("TOP", "TOP")
             {
                 new MenuSeparator("sep1", "Vayne")
@@ -49,6 +51,8 @@ namespace EzAIO
             {
                 champs.Add(menu);
             }
+
+            util.Add(champs);
         }
     }
 }

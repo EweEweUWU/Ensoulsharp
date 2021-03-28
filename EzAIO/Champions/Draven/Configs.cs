@@ -9,11 +9,14 @@ namespace EzAIO.Champions.Draven
             public static readonly MenuSlider RRangeSlider =
                 new MenuSlider("rRange", "Custom R Range", 1500, 1500, 2000);
 
+            public static readonly MenuBool WaitAxeBool =
+                new MenuBool("waitAxe", "Don't AA if can catch Axe");
+
             public static readonly MenuSliderButton MagnetToMarkSliderButton =
-                new MenuSliderButton("magnetMark", "Magnet to Marks | If Distance to Mouse <= x", 500, 350, 750);
+                new MenuSliderButton("magnetMark", "Magnet to Marks | If Distance to Mouse <= x", 600, 350, 750);
 
             public static readonly MenuSliderButton MagnetRangeSliderButton =
-                new MenuSliderButton("magnetRange", "^ Only if Range from player <= x", 500, 350, 750);
+                new MenuSliderButton("magnetRange", "^ Only if Range from player <= x", 600, 350, 750);
 
             public static readonly MenuBool BlockMovementBool =
                 new MenuBool("blockMove", "Block Movement Logic", false);

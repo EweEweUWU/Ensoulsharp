@@ -27,7 +27,7 @@ namespace EzAIO.Champions.Draven
         }
 
         public static readonly float MarksBoudingRadius = 150 - GameObjects.Player.BoundingRadius;
-        private static readonly float[] WBoost = {0f, 1.4f, 1.45f, 1.5f, 1.55f, 1.6f, 1.6f};
+        public static readonly float[] WBoost = {0f, 1.4f, 1.45f, 1.5f, 1.55f, 1.6f, 1.6f};
         public static float eDelay = 0f;
 
         public static int GetNumberAxesActives()
