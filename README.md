@@ -17,10 +17,12 @@ Créditos a babazhou por ayudarme en muchos aspectos del código.
 
 - Draven.
 - Ezreal.
+- Jinx.
 - Kalista.
 - Kaisa.
 - Katarina
 - Lucian.
+- Tristana.
 - Twitch.
 - Vayne.
 
