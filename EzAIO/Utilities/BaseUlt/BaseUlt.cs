@@ -46,7 +46,7 @@ namespace EzAIO.Utilities.BaseUlt
         private static void OnDraw(EventArgs args)
         {
             var notMode = Configs.BaseUltMenu.NotifyModeList.Index;
-            if (BaseULTChamps == null)
+            if (BaseULTChamps == null || !R.IsReady())
             {
                 return;
             }
@@ -114,7 +114,7 @@ namespace EzAIO.Utilities.BaseUlt
                     Delay = 1000;
                     Speed = 2000;
                     break;
-                    
+
             }
 
             if (GameObjects.EnemyHeroes == null || !R.IsReady() || !Configs.BaseUltMenu.EnableBool.Enabled)
@@ -125,7 +125,15 @@ namespace EzAIO.Utilities.BaseUlt
             foreach (var target in GameObjects.EnemyHeroes)
             {
                 var panic = Configs.BaseUltMenu.PanicKey.Active;
+                if (target == null)
+                {
+                    return;
+                }
                 var info = GetChamps.FirstOrDefault(x => x.NetworkID == target.NetworkId);
+                if (info == null)
+                {
+                    return;
+                }
                 if (info.TType == Teleport.TeleportType.Recall && info.TStatus == Teleport.TeleportStatus.Start)
                 {
                     if (Player.CharacterName == "Draven" && R.Name == "DravenRCast")
@@ -163,6 +171,40 @@ namespace EzAIO.Utilities.BaseUlt
                                 if (R.Cast(info.PosBase))
                                 {
                                     return;
+                                }
+                            }
+                        }
+                    }
+
+                    if (Player.CharacterName == "Jinx")
+                    {
+                        var delayshort = 2000 / 1500 * 1000;
+                        var maxspeed = 2200;
+                        var delay = 500;
+                        if (target.Health <= R.GetDamage(target))
+                        {
+                            BaseULTChamps.Add(target);
+                            if (Player.Distance(info.PosBase) > 2000)
+                            {
+                                delay = 500 + delayshort;
+                                if ((info.PosBase.DistanceToPlayer() - 2000) / maxspeed * 1000 + delay >=
+                                    info.Duration - (Variables.GameTimeTickCount - info.Start))
+                                {
+                                    if (R.Cast(info.PosBase))
+                                    {
+                                        return;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (info.PosBase.DistanceToPlayer() / 1500 * 1000 + delay >=
+                                    info.Duration - (Variables.GameTimeTickCount - info.Start))
+                                {
+                                    if (R.Cast(info.PosBase))
+                                    {
+                                        return;
+                                    }
                                 }
                             }
                         }

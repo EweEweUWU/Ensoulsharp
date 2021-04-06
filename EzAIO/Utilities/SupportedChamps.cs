@@ -29,9 +29,11 @@ namespace EzAIO
             {
                 new MenuSeparator("sep7","Draven"),
                 new MenuSeparator("sep1", "Ezreal"),
+                new MenuSeparator("sep8","Jinx"),
                 new MenuSeparator("sep2", "Kaisa"),
                 new MenuSeparator("sep3", "Kalista"),
                 new MenuSeparator("sep4", "Lucian"),
+                new MenuSeparator("sep9", "Tristana"),
                 new MenuSeparator("sep5", "Twitch"),
                 new MenuSeparator("sep6", "Vayne")
             };

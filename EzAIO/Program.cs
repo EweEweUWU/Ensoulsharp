@@ -2,6 +2,7 @@ using System;
 using EnsoulSharp;
 using EnsoulSharp.SDK;
 using EnsoulSharp.SDK.MenuUI;
+using EzAIO.Bases;
 using EzAIO.Utilities.BaseUlt;
 using SharpDX.Direct3D9;
 using static EzAIO.SupportedChamps;
@@ -11,9 +12,9 @@ namespace EzAIO{
     internal class Program
     {
         public static Font TextBold;
-        public const string version = "1.0.7.0";    
+        public const string version = "1.0.8.0";    
         private const string disc = "https://discord.gg/xuuUKAd7N2";
-        private const string commit = version + " BaseUlt Added!"; 
+        private const string commit = version + " Jinx and Tristana Added!"; 
         public static Menu util;
 
         private Program()
@@ -51,6 +52,7 @@ namespace EzAIO{
                 {
                     case "Ezreal":
                         Champions.Ezreal.Ezreal.OnGameLoad();
+                        BaseUlt.OnGameLoad();
                         MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Kalista":
@@ -79,6 +81,16 @@ namespace EzAIO{
                         break;
                     case "Draven":
                         Champions.Draven.Draven.OnGameLoad();
+                        BaseUlt.OnGameLoad();
+                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        break;
+                    case "Jinx":
+                        Champions.Jinx.Jinx.OnGameLoad();
+                        BaseUlt.OnGameLoad();
+                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        break;
+                    case "Tristana":
+                        Champions.Tristana.Tristana.OnGameLoad();
                         MSG(GameObjects.Player.CharacterName+" Loaded!");
                         break;
                     default:
@@ -95,7 +107,6 @@ namespace EzAIO{
             util = new Menu("AIOChamps", "[EzAIO] Utilities", true);
             Initialize();
             Menus.Initialize();
-            BaseUlt.OnGameLoad();
             util.Attach();
             MSG(commit);
             MSG("Enter my Discord server! "+disc);
