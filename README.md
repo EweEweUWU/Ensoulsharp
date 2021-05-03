@@ -15,8 +15,10 @@ Créditos a babazhou por ayudarme en muchos aspectos del código.
 
 **ChampionList**
 
+- Ashe
 - Draven.
 - Ezreal.
+- Jhin.
 - Jinx.
 - Kalista.
 - Kaisa.
