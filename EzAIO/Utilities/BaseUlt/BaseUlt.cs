@@ -3,6 +3,7 @@ using System.Linq;
 using EnsoulSharp;
 using EnsoulSharp.SDK;
 using EzAIO.Bases;
+using EzAIO.Champions.Ashe;
 using SharpDX;
 using static EzAIO.Utilities.BaseUlt.Bases;
 using static EzAIO.Program;
@@ -114,6 +115,10 @@ namespace EzAIO.Utilities.BaseUlt
                     Delay = 1000;
                     Speed = 2000;
                     break;
+                case "Ashe":
+                    Delay = 250;
+                    Speed = 1600;
+                    break;
 
             }
 
@@ -175,6 +180,27 @@ namespace EzAIO.Utilities.BaseUlt
                             }
                         }
                     }
+                    if (Player.CharacterName == "Ashe")
+                    {
+                        if (target.Health <= Champions.Ashe.Damage.RDamage(target))
+                        {
+                            BaseULTChamps.Add(target);
+                            if (info.PosBase.DistanceToPlayer() / Speed * 1000 + Delay >=
+                                info.Duration - (Variables.GameTimeTickCount - info.Start))
+                            {
+                                if (panic ||
+                                    Player.CountEnemyHeroesInRange(Configs.BaseUltMenu.EnemyRangeSlider.Value) != 0)
+                                {
+                                    return;
+                                }
+
+                                if (R.Cast(info.PosBase))
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                    }
 
                     if (Player.CharacterName == "Jinx")
                     {
@@ -209,6 +235,8 @@ namespace EzAIO.Utilities.BaseUlt
                             }
                         }
                     }
+
+                    
                 }
                 else
                 {

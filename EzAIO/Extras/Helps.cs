@@ -3,6 +3,7 @@ using System.Linq;
 using EnsoulSharp;
 using EnsoulSharp.SDK;
 using SharpDX;
+using static EnsoulSharp.SDK.Geometry;
 
 namespace EzAIO.Extras
 {
@@ -26,6 +27,15 @@ namespace EzAIO.Extras
         public static int CountInRange(AIBaseClient unit, float range, IEnumerable<AIBaseClient> units)
         {
             return GetInRange(unit.Position.To2D(), range, units).Count();
+        }
+
+        public static List<AIHeroClient> GetBestEnemyHeroesTarget()
+        {
+            return GetBestEnemyHeroesInRange(float.MaxValue);
+        }
+        public static List<AIHeroClient> GetBestEnemyHeroesInRange(float range)
+        {
+            return TargetSelector.GetTargets(range).ToList();
         }
     }
 }

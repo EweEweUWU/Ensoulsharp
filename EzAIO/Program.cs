@@ -8,13 +8,14 @@ using SharpDX.Direct3D9;
 using static EzAIO.SupportedChamps;
 using EzAIO.Utilities.BaseUlt;
 
+
 namespace EzAIO{
     internal class Program
     {
         public static Font TextBold;
-        public const string version = "1.0.8.0";    
+        public const string version = "1.0.9.0";    
         private const string disc = "https://discord.gg/xuuUKAd7N2";
-        private const string commit = version + " Jinx and Tristana Added!"; 
+        private const string commit = version + " Jhin and Ashe Added!"; 
         public static Menu util;
 
         private Program()
@@ -93,6 +94,15 @@ namespace EzAIO{
                         Champions.Tristana.Tristana.OnGameLoad();
                         MSG(GameObjects.Player.CharacterName+" Loaded!");
                         break;
+                    case "Jhin":
+                        Champions.Jhin.Jhin.OnGameLoad();
+                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        break;
+                    case "Ashe":
+                        Champions.Ashe.Ashe.OnGameLoad();
+                        BaseUlt.OnGameLoad();
+                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        break;
                     default:
                         MSG(GameObjects.Player.CharacterName + " not supported!");
                         break;
@@ -107,6 +117,7 @@ namespace EzAIO{
             util = new Menu("AIOChamps", "[EzAIO] Utilities", true);
             Initialize();
             Menus.Initialize();
+            EzAIO.Developer.Menus.Initialize();
             util.Attach();
             MSG(commit);
             MSG("Enter my Discord server! "+disc);

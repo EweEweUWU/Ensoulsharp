@@ -27,7 +27,8 @@ namespace EzAIO.Utilities.BaseUlt
             {
                 "Draven",
                 "Ezreal",
-                "Jinx"
+                "Jinx",
+                "Ashe"
             };
             if (supportedChanos.Contains(GameObjects.Player.CharacterName))
             {
