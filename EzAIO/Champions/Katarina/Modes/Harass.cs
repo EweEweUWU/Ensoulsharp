@@ -35,7 +35,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            var qtarget = TargetSelector.GetTarget(Q.Range);
+            var qtarget = Q.GetTarget();
             if (qtarget == null)
             {
                 return;
@@ -51,7 +51,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            var wtarget = TargetSelector.GetTarget(W.Range);
+            var wtarget = W.GetTarget();
             if (wtarget == null)
             {
                 return;
@@ -67,7 +67,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            var daggerTarget = TargetSelector.GetTarget(E.Range);
+            var daggerTarget = E.GetTarget();
             if (daggerTarget != null)
             {
                 var dagger = Extension.Daggers.FirstOrDefault(
@@ -78,7 +78,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 }
             }
 
-            var etarget = TargetSelector.GetTarget(E.Range);
+            var etarget = E.GetTarget();
             var eMode = HarassMenu.EModeList.Index;
             if (etarget != null)
             {

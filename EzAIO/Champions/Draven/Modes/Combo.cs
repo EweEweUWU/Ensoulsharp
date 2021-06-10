@@ -78,7 +78,7 @@ namespace EzAIO.Champions.Draven.Modes
                 return;
             }
 
-            var target = TargetSelector.GetTarget(R.Range);
+            var target = TargetSelector.GetTarget(R.Range,DamageType.Physical);
             var rinput = R.GetPrediction(target);
             if (rinput.Hitchance >= HitChance.High)
             {

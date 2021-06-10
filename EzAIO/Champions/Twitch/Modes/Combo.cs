@@ -1,4 +1,5 @@
-﻿using EnsoulSharp.SDK;
+﻿using System.Linq;
+using EnsoulSharp.SDK;
 using EzAIO.Bases;
 using static EzAIO.Champions.Twitch.Configs;
 namespace EzAIO.Champions.Twitch.Modes
@@ -13,7 +14,7 @@ namespace EzAIO.Champions.Twitch.Modes
                 return;
             }
 
-            var target = TargetSelector.GetTarget(600);
+            var target = GameObjects.EnemyHeroes.Where(x => x.InRange(600)).ToList();
             if (target == null)
             {
                 return;
@@ -39,7 +40,7 @@ namespace EzAIO.Champions.Twitch.Modes
                 return;
             }
 
-            var wtaregt = TargetSelector.GetTarget(W.Range);
+            var wtaregt = W.GetTarget();
             if (wtaregt == null)
             {
                 return;

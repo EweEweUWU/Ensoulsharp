@@ -22,7 +22,7 @@ namespace EzAIO.Champions.Vayne.Modes
             switch (ComboMenu.QList.Index)
             {
                 case 0:
-                    var qtarget = TargetSelector.GetTarget(Q.Range);
+                    var qtarget = Q.GetTarget();
                     if (qtarget == null || qtarget.IsInvulnerable ||
                         qtarget.DistanceToPlayer() <= GameObjects.Player.GetRealAutoAttackRange(qtarget))
                     {
@@ -40,7 +40,7 @@ namespace EzAIO.Champions.Vayne.Modes
                     Q.Cast(posAfterQ);
                     break;
                 case 1:
-                    var target = TargetSelector.GetTarget(Q.Range);
+                    var target = Q.GetTarget();
                     if (target == null || target.IsInvulnerable ||
                         target.DistanceToPlayer() <= GameObjects.Player.GetRealAutoAttackRange(target))
                     {
@@ -91,7 +91,7 @@ namespace EzAIO.Champions.Vayne.Modes
                 return;
             }
 
-            var target = TargetSelector.GetTarget(E.Range);
+            var target = E.GetTarget();
             if (target == null)
             {
                 return;

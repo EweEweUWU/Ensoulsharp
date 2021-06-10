@@ -14,7 +14,7 @@ namespace EzAIO.Champions.Jinx.Modes
                 return;
             }
 
-            var target = TargetSelector.GetTarget(Extension.RocketRange);
+            var target = TargetSelector.GetTarget(Extension.RocketRange,DamageType.Physical);
             if (target == null)
             {
                 return;

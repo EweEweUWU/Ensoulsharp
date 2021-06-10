@@ -35,7 +35,7 @@ namespace EzAIO.Extras
         }
         public static List<AIHeroClient> GetBestEnemyHeroesInRange(float range)
         {
-            return TargetSelector.GetTargets(range).ToList();
+            return GameObjects.EnemyHeroes.Where(x => x.InRange(range)).ToList();
         }
     }
 }

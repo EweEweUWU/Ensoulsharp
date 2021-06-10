@@ -16,7 +16,7 @@ namespace EzAIO.Champions.Lucian.Modes
                 return;
             }
 
-            var etarget = TargetSelector.GetTarget(E.Range);
+            var etarget = E.GetTarget();
             if (etarget == null ||
                 etarget.IsInvulnerable ||
                 etarget.DistanceToPlayer() <= GameObjects.Player.GetRealAutoAttackRange(etarget))
@@ -65,7 +65,7 @@ namespace EzAIO.Champions.Lucian.Modes
                 return;
             }
 
-            var rtraget = TargetSelector.GetTarget(R.Range);
+            var rtraget = R.GetTarget();
             if (rtraget == null)
             {
                 return;

@@ -26,7 +26,7 @@ namespace EzAIO.Champions.Kalista.Modes
                 return;
             }
 
-            var qtarget = TargetSelector.GetTarget(Q.Range);
+            var qtarget = TargetSelector.GetTarget(Q.Range,DamageType.Physical);
             if (qtarget == null)
             {
                 return;

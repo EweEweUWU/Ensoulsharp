@@ -13,9 +13,9 @@ namespace EzAIO{
     internal class Program
     {
         public static Font TextBold;
-        public const string version = "1.0.9.0";    
+        public const string version = "1.0.10.0";    
         private const string disc = "https://discord.gg/xuuUKAd7N2";
-        private const string commit = version + " Jhin and Ashe Added!"; 
+        private const string commit = version + " Updated to new Ensoul Core"; 
         public static Menu util;
 
         private Program()

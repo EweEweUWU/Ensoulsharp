@@ -42,7 +42,7 @@ namespace EzAIO.Champions.Vayne.Modes
                 return;
             }
 
-            foreach (var targets in TargetSelector.GetTargets(E.Range).ToList().Where(x=>x.Has2WStacks()))
+            foreach (var targets in TargetSelector.GetTargets(E.Range,DamageType.Physical).ToList().Where(x=>x.Has2WStacks()))
             {
                 E.CastOnUnit(targets);
                 break;

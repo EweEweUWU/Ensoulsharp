@@ -37,7 +37,7 @@ namespace EzAIO.Champions.Kaisa.Modes
                 return;
             }
 
-            var enemies = TargetSelector.GetTargets(W.Range).ToList();
+            var enemies = TargetSelector.GetTargets(W.Range,DamageType.Mixed).ToList();
             foreach (var target in enemies.Where(x=>x.IsValidTarget(W.Range)))
             {
                 if (target == null)

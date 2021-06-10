@@ -62,7 +62,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            var qtarget = TargetSelector.GetTarget(Q.Range);
+            var qtarget = Q.GetTarget();
             if (qtarget == null)
             {
                 return;
@@ -78,7 +78,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            var etarget = TargetSelector.GetTarget(E.Range);
+            var etarget = TargetSelector.GetTarget(E.Range,DamageType.Physical);
             if (etarget == null)
             {
                 return;
@@ -111,7 +111,8 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            var wtarget = TargetSelector.GetTarget(W.Range);
+            //var wtarget = TargetSelector.GetTarget(W.Range);
+            var wtarget = W.GetTarget();
             if (wtarget == null || !wtarget.InAutoAttackRange())
             {
                 return;
@@ -127,7 +128,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            var daggerTarget = TargetSelector.GetTarget(E.Range + 250);
+            var daggerTarget = E.GetTarget(E.Range + 250);
             if (daggerTarget != null)
             {
                 var dagger = Extension.Daggers.FirstOrDefault(
@@ -138,7 +139,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 }
             }
 
-            var etarget = TargetSelector.GetTarget(E.Range + 250);
+            var etarget = E.GetTarget(E.Range + 250);
             var emode = ComboMenu.EModeList.Index;
             if (etarget != null)
             {
@@ -180,7 +181,7 @@ namespace EzAIO.Champions.Katarina.Modes
                 return;
             }
 
-            var rtarget = TargetSelector.GetTarget(R.Range);
+            var rtarget = R.GetTarget();
             if (rtarget == null)
             {
                 return;

@@ -37,19 +37,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EnsoulSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a79d4397685f9df0">
-      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\EnsoulSharp\Reference\EnsoulSharp.dll</HintPath>
+      <HintPath>D:\Programas\ES\EnsoulSharp\Reference\EnsoulSharp.dll</HintPath>
     </Reference>
     <Reference Include="EnsoulSharp.SDK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bcecb37b3b5656dd">
-      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\EnsoulSharp\Reference\EnsoulSharp.SDK.dll</HintPath>
+      <HintPath>D:\Programas\ES\EnsoulSharp\Reference\EnsoulSharp.SDK.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1">
-      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\EnsoulSharp\Reference\SharpDX.dll</HintPath>
+      <HintPath>D:\Programas\ES\EnsoulSharp\Reference\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D9, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1">
-      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\EnsoulSharp\Reference\SharpDX.Direct3D9.dll</HintPath>
+      <HintPath>D:\Programas\ES\EnsoulSharp\Reference\SharpDX.Direct3D9.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Mathematics, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1">
-      <HintPath>C:\Users\pjpix\Desktop\Todo\Ensouk\EnsoulSharp\EnsoulSharp\Reference\SharpDX.Mathematics.dll</HintPath>
+      <HintPath>D:\Programas\ES\EnsoulSharp\Reference\SharpDX.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

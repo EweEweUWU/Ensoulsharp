@@ -35,7 +35,7 @@ namespace EzAIO.Champions.Jhin.Modes
                 return;
             }
 
-            var target = TargetSelector.GetTargets(W.Range).Where(x => x.IsMarked() &&
+            var target = TargetSelector.GetTargets(W.Range,DamageType.Physical).Where(x => x.IsMarked() &&
                                                                        !x.IsInvulnerable &&
                                                                        (x.HasBuffOfType(BuffType.Slow) ||
                                                                         !ComboMenu.WCCBool.Enabled)).ToList();

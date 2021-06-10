@@ -58,7 +58,7 @@ namespace EzAIO.Champions.Ashe.Modes
                 return;
             }
 
-            var rtarget = TargetSelector.GetTarget(AutomaticMenu.RrangeSlider.Value);
+            var rtarget = TargetSelector.GetTarget(AutomaticMenu.RrangeSlider.Value,DamageType.Mixed);
             if (rtarget == null)
             {
                 return;

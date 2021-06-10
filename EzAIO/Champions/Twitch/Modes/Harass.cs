@@ -18,7 +18,7 @@ namespace EzAIO.Champions.Twitch.Modes
                 return;
             }
 
-            var wtarget = TargetSelector.GetTarget(W.Range);
+            var wtarget = W.GetTarget();
             if (wtarget == null)
             {
                 return;
@@ -43,7 +43,7 @@ namespace EzAIO.Champions.Twitch.Modes
                 return;
             }
 
-            var etarget = TargetSelector.GetTarget(E.Range);
+            var etarget = E.GetTarget();
             if (etarget == null || !Extension.HasPoisonEffect(etarget, E.Range))
             {
                 return;

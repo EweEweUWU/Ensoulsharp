@@ -59,7 +59,7 @@ namespace EzAIO.Champions.Lucian.Modes
                 return;
             }
 
-            foreach (var target in TargetSelector.GetTargets(Q.Range).ToList())
+            foreach (var target in TargetSelector.GetTargets(Q.Range,DamageType.Physical).ToList())
             {
                 if (target == null)
                 {
@@ -83,7 +83,7 @@ namespace EzAIO.Champions.Lucian.Modes
                 return;
             }
 
-            foreach (var target in TargetSelector.GetTargets(W.Range).ToList())
+            foreach (var target in TargetSelector.GetTargets(W.Range,DamageType.Magical).ToList())
             {
                 if (target == null)
                 {

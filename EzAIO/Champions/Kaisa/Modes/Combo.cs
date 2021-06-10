@@ -13,7 +13,7 @@ namespace EzAIO.Champions.Kaisa.Modes
                 return;
             }
 
-            var qtarget = TargetSelector.GetTarget(Q.Range);
+            var qtarget = TargetSelector.GetTarget(Q.Range,DamageType.Physical);
             if (qtarget == null)
             {
                 return;
@@ -29,7 +29,7 @@ namespace EzAIO.Champions.Kaisa.Modes
                 return;
             }
 
-            var wtarget = TargetSelector.GetTarget(W.Range);
+            var wtarget = TargetSelector.GetTarget(W.Range,DamageType.Mixed);
             if (wtarget == null)
             {
                 return;
@@ -59,7 +59,7 @@ namespace EzAIO.Champions.Kaisa.Modes
                 return;
             }
 
-            var target = TargetSelector.GetTarget(Q.Range);
+            var target = TargetSelector.GetTarget(Q.Range,DamageType.Physical);
             if (target == null)
             {
                 return;
