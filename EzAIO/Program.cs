@@ -9,24 +9,25 @@ using static EzAIO.SupportedChamps;
 using EzAIO.Utilities.BaseUlt;
 
 
-namespace EzAIO{
+namespace EzAIO
+{
     internal class Program
     {
         public static Font TextBold;
-        public const string version = "1.0.10.0";    
-        private const string disc = "https://discord.gg/xuuUKAd7N2";
-        private const string commit = version + " Updated to new Ensoul Core"; 
+        public const string version = "1.0.10.0";
+        private const string disc = "https://discord.gg/pgM3mEGQUm.";
+        private const string commit = "EzAIO is not updated anymore, but I am working on a new AIO.";
         public static Menu util;
 
         private Program()
         {
             new SupportedChamps();
         }
-        
+
 
         public static void MSG(string mess)
         {
-            Game.Print("<font color = '#FF0000'>[EzAIO] <font color = '#FFFFFF'>"+mess);
+            Game.Print("<font color = '#FF0000'>[EzAIO] <font color = '#FFFFFF'>" + mess);
         }
         public static void Main(string[] args)
         {
@@ -34,7 +35,7 @@ namespace EzAIO{
         }
         private static void OnGameLoad()
         {
-            TextBold = new Font(Drawing.Direct3DDevice, new FontDescription
+            TextBold = new Font(Drawing.Direct3DDevice9, new FontDescription
             {
                 FaceName = "Tahoma",
                 Height = 30,
@@ -58,50 +59,50 @@ namespace EzAIO{
                         break;
                     case "Kalista":
                         Champions.Kalista.Kalista.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Twitch":
                         Champions.Twitch.Twitch.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Lucian":
                         Champions.Lucian.Lucian.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Kaisa":
                         Champions.Kaisa.Kaisa.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Vayne":
                         Champions.Vayne.Vayne.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Katarina":
                         Champions.Katarina.Katarina.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Draven":
                         Champions.Draven.Draven.OnGameLoad();
                         BaseUlt.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Jinx":
                         Champions.Jinx.Jinx.OnGameLoad();
                         BaseUlt.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Tristana":
                         Champions.Tristana.Tristana.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Jhin":
                         Champions.Jhin.Jhin.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     case "Ashe":
                         Champions.Ashe.Ashe.OnGameLoad();
                         BaseUlt.OnGameLoad();
-                        MSG(GameObjects.Player.CharacterName+" Loaded!");
+                        MSG(GameObjects.Player.CharacterName + " Loaded!");
                         break;
                     default:
                         MSG(GameObjects.Player.CharacterName + " not supported!");
@@ -120,12 +121,12 @@ namespace EzAIO{
             EzAIO.Developer.Menus.Initialize();
             util.Attach();
             MSG(commit);
-            MSG("Enter my Discord server! "+disc);
+            MSG("New Discord server " + disc);
         }
 
         public static void DrawText(Font fuente, String text, float posx, float posy, SharpDX.ColorBGRA color)
         {
-            fuente.DrawText(null, text, (int) posx, (int) posy, color);
+            fuente.DrawText(null, text, (int)posx, (int)posy, color);
         }
     }
 }

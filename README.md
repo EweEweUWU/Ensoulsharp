@@ -1,6 +1,8 @@
 # Ensoulsharp
 
-Join in to my Discord Channel: https://discord.gg/xuuUKAd7N2
+EzAIO will not be updated again, I will only do maintenance when I see it necessary. Now I am working on EvaAIO, a new project. I leave you the link of my new github: https://github.com/AkenoHimejimaa/EvaAIO
+
+Join in to my new Discord Channel: https://github.com/AkenoHimejimaa/EvaAIO
 
 **EzAIO**
 
