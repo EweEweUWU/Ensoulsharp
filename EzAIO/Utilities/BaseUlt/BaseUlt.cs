@@ -41,7 +41,7 @@ namespace EzAIO.Utilities.BaseUlt
 
             GameEvent.OnGameTick += OnGameUpdate;
             Teleport.OnTeleport += OnTeleport;
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
         }
 
         private static void OnDraw(EventArgs args)

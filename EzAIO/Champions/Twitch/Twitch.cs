@@ -33,8 +33,8 @@ namespace EzAIO.Champions.Twitch
             mainMenu.Attach();
             GameEvent.OnGameTick += OnGameUpdate;
             Orbwalker.OnBeforeAttack += OnBeforeAttack;
-            Drawing.OnDraw += OnDraw;
-            Drawing.OnEndScene += OnEndScene;
+            Render.OnDraw += OnDraw;
+            Render.OnEndScene += OnEndScene;
         }
 
         private static void OnBeforeAttack(object sender, BeforeAttackEventArgs args)

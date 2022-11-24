@@ -23,7 +23,7 @@ namespace EzAIO.Champions.Tristana
                 ComboMenu.EBool,
                 ComboMenu.RSemiCastBool
             };
-            ComboMenu.RSemiCastBool.Permashow();
+            ComboMenu.RSemiCastBool.AddPermashow();
             var harassMenu = new Menu("Harass", "Harass")
             {
                 HarassMenu.QSliderButton,

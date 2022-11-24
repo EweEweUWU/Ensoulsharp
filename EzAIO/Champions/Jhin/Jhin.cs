@@ -49,7 +49,7 @@ namespace EzAIO.Champions.Jhin
             Teleport.OnTeleport += OnTeleport;
             AIBaseClient.OnProcessSpellCast += OnProcessSpellCast;
             Spellbook.OnCastSpell += OnCastSpell;
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
 
         }
 

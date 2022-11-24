@@ -38,7 +38,7 @@ namespace EzAIO.Champions.Ezreal
             Menus.Initialize();
             mainMenu.Attach();
             GameEvent.OnGameTick += OnGameUpdate;
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
 
         }
 

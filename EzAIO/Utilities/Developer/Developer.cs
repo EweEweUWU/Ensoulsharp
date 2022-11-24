@@ -21,7 +21,7 @@ namespace EzAIO.Developer
                 return;
             }
 
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
         }
 
         private static void OnDraw(EventArgs args)

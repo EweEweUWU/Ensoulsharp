@@ -40,7 +40,7 @@ namespace EzAIO.Champions.Jinx
             AIBaseClient.OnBuffRemove += OnBuffRemove;
             Teleport.OnTeleport += OnTeleport;
             Orbwalker.OnBeforeAttack += OnBeforeAttack;
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
         }
 
         private static void OnDraw(EventArgs args)

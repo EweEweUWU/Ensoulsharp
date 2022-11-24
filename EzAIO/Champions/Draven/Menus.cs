@@ -33,7 +33,7 @@ namespace EzAIO.Champions.Draven
                 ComboMenu.EBool,
                 ComboMenu.RKey
             };
-            ComboMenu.RKey.Permashow();
+            ComboMenu.RKey.AddPermashow();
             var harassMenu = new Menu("Harass", "Harass")
             {
                 HarassMenu.QSliderButton,

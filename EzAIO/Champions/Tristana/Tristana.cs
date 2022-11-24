@@ -42,7 +42,7 @@ namespace EzAIO.Champions.Tristana
             //AIBaseClient.OnBuffAdd += OnBuffAdd;
             Orbwalker.OnBeforeAttack += OnBeforeAttack;
             GameEvent.OnGameTick += OnGameUpdate;
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
         }
 
         private static void OnDraw(EventArgs args)

@@ -33,7 +33,7 @@ namespace EzAIO.Champions.Kaisa
             mainMenu.Attach();
             GameEvent.OnGameTick += OnGameUpdate;
             Orbwalker.OnAfterAttack += OnAfterAttack;
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
         }
 
         private static void OnAfterAttack(object sender, AfterAttackEventArgs args)

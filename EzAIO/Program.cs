@@ -2,6 +2,8 @@ using System;
 using EnsoulSharp;
 using EnsoulSharp.SDK;
 using EnsoulSharp.SDK.MenuUI;
+using EnsoulSharp.SDK.Rendering;
+using EnsoulSharp.SDK.Rendering.Caches;
 using EzAIO.Bases;
 using EzAIO.Utilities.BaseUlt;
 using SharpDX.Direct3D9;
@@ -13,10 +15,10 @@ namespace EzAIO
 {
     internal class Program
     {
-        public static Font TextBold;
+        public static FontCache TextBold;
         public const string version = "1.0.10.0";
-        private const string disc = "https://discord.gg/pgM3mEGQUm.";
-        private const string commit = "EzAIO is not updated anymore, but I am working on a new AIO.";
+        private const string disc = "[REMOVED]";
+        private const string commit = "Updated";
         public static Menu util;
 
         private Program()
@@ -35,14 +37,7 @@ namespace EzAIO
         }
         private static void OnGameLoad()
         {
-            TextBold = new Font(Drawing.Direct3DDevice9, new FontDescription
-            {
-                FaceName = "Tahoma",
-                Height = 30,
-                Weight = FontWeight.ExtraBold,
-                OutputPrecision = FontPrecision.Default,
-                Quality = FontQuality.ClearType,
-            });
+            TextBold = TextRender.CreateFont(30);
             if (ObjectManager.Player.IsDead)
             {
                 return;
@@ -124,9 +119,9 @@ namespace EzAIO
             MSG("New Discord server " + disc);
         }
 
-        public static void DrawText(Font fuente, String text, float posx, float posy, SharpDX.ColorBGRA color)
+        public static void DrawText(FontCache fuente, String text, float posx, float posy, SharpDX.ColorBGRA color)
         {
-            fuente.DrawText(null, text, (int)posx, (int)posy, color);
+            fuente.Draw(text, (int)posx, (int)posy, color);
         }
     }
 }

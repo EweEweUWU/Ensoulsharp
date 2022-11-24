@@ -34,7 +34,7 @@ namespace EzAIO.Champions.Katarina
                 ComboMenu.RSlider,
                 ComboMenu.RCancelBool
             };
-            ComboMenu.ComboList.Permashow();
+            ComboMenu.ComboList.AddPermashow();
             var harassMenu = new Menu("Harass", "Harass")
             {
                 HarassMenu.HarassModeList,
@@ -59,7 +59,7 @@ namespace EzAIO.Champions.Katarina
                 LaneclearMenu.ESliderButton,
                 LaneclearMenu.ETurretBool
             };
-            LaneclearMenu.FarmToggleKey.Permashow();
+            LaneclearMenu.FarmToggleKey.AddPermashow();
             var jungleclearMenu = new Menu("Jungleclear", "Jungle Clear")
             {
                 JungleclearMenu.QBool,

@@ -32,7 +32,7 @@ namespace EzAIO.Utilities.BaseUlt
             };
             if (supportedChanos.Contains(GameObjects.Player.CharacterName))
             {
-                BaseUltMenu.PanicKey.Permashow();
+                BaseUltMenu.PanicKey.AddPermashow();
                 util.Add(baseMenu);
             }
             

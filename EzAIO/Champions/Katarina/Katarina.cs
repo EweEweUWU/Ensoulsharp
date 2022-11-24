@@ -41,7 +41,7 @@ namespace EzAIO.Champions.Katarina
             GameObject.OnDelete += OnDelete;
             AIBaseClient.OnBuffAdd += OnBuffAdd;
             AIBaseClient.OnBuffRemove += OnBuffRemove;
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
         }
 
         private static void OnBuffRemove(AIBaseClient sender, AIBaseClientBuffRemoveEventArgs args)

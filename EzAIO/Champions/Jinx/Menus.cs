@@ -31,8 +31,8 @@ namespace EzAIO.Champions.Jinx
                 ComboMenu.RSliderRange,
                 ComboMenu.RSafeBool
             };
-            ComboMenu.EKey.Permashow();
-            ComboMenu.Rkey.Permashow();
+            ComboMenu.EKey.AddPermashow();
+            ComboMenu.Rkey.AddPermashow();
             var harassMenu = new Menu("Harass", "Harass")
             {
                 HarassMenu.QSliderButton,

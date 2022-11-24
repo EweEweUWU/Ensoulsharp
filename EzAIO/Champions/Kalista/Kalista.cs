@@ -36,8 +36,8 @@ namespace EzAIO.Champions.Kalista
             Menus.Initialize();
             maineMenu.Attach();
             GameEvent.OnGameTick += OnGameUpdate;
-            Drawing.OnDraw += OnDraw;
-            Drawing.OnEndScene += OnEndScene;
+            Render.OnDraw += OnDraw;
+            Render.OnEndScene += OnEndScene;
             Orbwalker.OnNonKillableMinion += OnNonKillables;
         }
 

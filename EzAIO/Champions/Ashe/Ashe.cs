@@ -38,7 +38,7 @@ namespace EzAIO.Champions.Ashe
             mainMenu.Attach();
             GameEvent.OnGameTick += OnGameUpdate;
             Orbwalker.OnAfterAttack += OnAfterAttack;
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
         }
 
         private static void OnDraw(EventArgs args)

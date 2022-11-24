@@ -40,7 +40,7 @@ namespace EzAIO.Champions.Vayne
                 ComboMenu.EBool,
                 ComboMenu.ESmiKeybind
             };
-            ComboMenu.QList.Permashow();
+            ComboMenu.QList.AddPermashow();
             var harassMenu = new Menu("Harass", "Harass")
             {
                 HarassMenu.QSliderButton,

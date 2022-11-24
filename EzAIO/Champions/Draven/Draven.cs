@@ -45,7 +45,7 @@ namespace EzAIO.Champions.Draven
             Orbwalker.OnBeforeAttack += OnBeforeAttack;
             Orbwalker.OnAfterAttack += OnAfterAttack;
             Orbwalker.OnBeforeMove += OnBeforeMove;
-            Drawing.OnDraw += OnDraw;
+            Render.OnDraw += OnDraw;
         }
 
         private static void OnDraw(EventArgs args)

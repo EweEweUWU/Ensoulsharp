@@ -1,10 +1,9 @@
-﻿using System;
-using System.Drawing;
-using EnsoulSharp;
+﻿using EnsoulSharp;
 using EnsoulSharp.SDK;
 using EnsoulSharp.SDK.Utility;
 using static EzAIO.Program;
 using EnsoulSharp.SDK.MenuUI;
+using EnsoulSharp.SDK.Rendering;
 using SharpDX;
 using Color = SharpDX.Color;
 
@@ -55,7 +54,7 @@ namespace EzAIO.Bases
 
         public static void DrawCircle(Vector3 pos, float radius, System.Drawing.Color color)
         {
-            Render.Circle.DrawCircle(pos,radius,color);
+            CircleRender.Draw(pos,radius,color.ToSharpDxColor());
         }
     }
 }
